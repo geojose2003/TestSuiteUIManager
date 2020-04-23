@@ -1,0 +1,66 @@
+
+  <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<form (ngSubmit)="submit()" [formGroup]="form">
+<div class="container" style="padding-top: 25px;">
+<h2 style="color:#7a0099;">Add Portal to TestSuiteRunner</h2>
+  <div class="col-sm-5" style="padding-top: 20px;">
+    <div class="form-group">
+      <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Industry*</label>
+      <input type="text" class="form-control" formControlName="industry" [(ngModel)]="industry" id="industry" aria-describedby="emailHelp" >
+       </div>
+       <div class="form-group">
+        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Client Name*</label>
+        <input type="text" class="form-control" formControlName="clientName" [(ngModel)]="clientName" id="clientName" aria-describedby="emailHelp" >
+         </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Navigate Field*</label>
+      <input type="text" class="form-control" formControlName="navigate" [(ngModel)]="navigate" id="navigate" aria-describedby="emailHelp" >
+       </div>
+       <div class="form-group">
+        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Portal Name*</label>
+        <input type="text" class="form-control" formControlName="portalName" [(ngModel)]="portalName" id="portal Name" aria-describedby="emailHelp" >
+         </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">Module Name*</label>
+      <input type="text" class="form-control" [(ngModel)]="moduleName" formControlName="moduleName" id="module Name" >
+    </div> 
+    <div class="form-group">
+      <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">Portal URL*</label>
+      <input type="text" class="form-control" [(ngModel)]="portalUrl" formControlName="portalUrl" id="portal Name" >
+    </div> 
+    <label style="font-weight: bold;color:#7a0099;">Add fields* </label>
+      <div class="input-group">
+        
+        <div class="input-group-prepend">
+          
+        </div>
+        <div class="custom-file">
+          <input type="file" class="form-control" (change)="uploadedFile($event,'field')" placeholder="Upload file" accept=".xlsx">
+           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('field')">View</button>
+           
+        </div>
+      </div>
+      <label style="font-weight: bold;padding-top: 15px;color:#7a0099;">Add Sample-Data* </label>
+      <div class="input-group">
+        
+        <div class="input-group-prepend">
+          
+        </div>
+        <div class="custom-file">
+          <input type="file" class="form-control" (change)="uploadedFile($event,'sample')" placeholder="Upload file" accept=".xlsx">
+           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('sample')">View</button>
+           
+        </div>
+      </div>
+      <button type="submit"  style="margin-top: 25px;"  class="btn btn-primary">Submit</button>
+      </div>
+</div>
+</form>
+

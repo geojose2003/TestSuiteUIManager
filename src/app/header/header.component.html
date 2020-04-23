@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span><a mat-button href="" style="font-size: larger;">TestSuite-Runner</a></span>
+        <span class="example-fill-remaining-space"></span>
+        <span class="align-center"></span>
+        <span class="example-spacer"></span>
+         <a mat-button  style="padding-left: 900px; font-weight: bold;" *ngIf="!loginService.isUserLoggedIn()" routerLink="/signup" class="nav-link">SignUp</a> 
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/viewPortal" class="nav-link">View MemberPortal</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/addportal" class="nav-link">Add Memberportal</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a>
+        
+    </mat-toolbar-row>
+</mat-toolbar>

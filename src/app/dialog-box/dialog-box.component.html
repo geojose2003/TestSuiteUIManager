@@ -1,0 +1,60 @@
+<mat-card-header>
+  <mat-toolbar color="primary" class="toolbar">
+    <mat-card-title style="text-align: center;">Edit Portal Information</mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <mat-icon style="padding-left: 650px;" (click)="onNoClick()">cancel</mat-icon>
+  </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+  <div class="container">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="form-group">
+        <div class="row">
+          <div style="padding-top: 23px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">Portal Id</label>
+            <input type="text" formControlName="PortalId" class="form-control" readonly>
+          </div>
+          <div style="padding-top: 23px" class="col-md-6">
+            <label style="font-weight: bold;">Industry</label>
+            <input type="text" formControlName="Industry" class="form-control">
+          </div>
+          <div style="padding-top: 23px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">Client Name</label>
+            <input type="text" formControlName="ClientName" class="form-control">
+          </div>
+          <div style="padding-top: 23px" class="col-md-6">
+            <label style="font-weight: bold;">Navigation</label>
+            <input type="text" formControlName="Navigate" class="form-control">
+          </div>
+          <div style="padding-top: 10px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">Portal Name</label>
+            <input type="text" formControlName="PortalName" class="form-control">
+          </div>
+          <div style="padding-top: 10px"class="col-md-6">
+            <label style="font-weight: bold;">Portal Url</label>
+            <input type="text" formControlName="PortalUrl" class="form-control">
+          </div>
+          <div style="padding-top: 10px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">Module Name</label>
+            <input type="text" formControlName="ModuleName" class="form-control">
+          </div>
+          <div style="padding-top: 10px" class="col-md-6">
+            <label style="font-weight: bold;">Field</label>
+            <input type="text" formControlName="Field" class="form-control">
+          </div>
+          <div style="padding-top: 10px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">SampleData</label>
+            <input type="text" formControlName="SampleData" class="form-control">
+          </div>
+          
+            <div style="padding-left: 800px;" class="col-md-6">
+            <button style="margin-top:12px;" type="submit" class="btn btn-success">
+              <mat-icon>save</mat-icon>
+            </button>
+            
+          </div>
+        </div>
+     </div>
+    </form>
+  </div>
+</mat-card-content>
