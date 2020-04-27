@@ -77,6 +77,16 @@ deletPortal(portal): void {
       console.log("failure"+err.log);
     });
   }
+  navigatePortal(portal): void {
+    this.service.navigatePortal(portal).subscribe((data)=>{
+      if(data){
+        window.location.reload()
+        this.router.navigate(["/viewPortal"])
+      }
+    },(err)=>{
+      console.log("failure"+err.log);
+    });
+  }
   
 }
 export interface PeriodicElement {
