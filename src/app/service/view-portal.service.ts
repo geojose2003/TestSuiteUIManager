@@ -71,7 +71,7 @@ export class ViewPortalService {
       "moduleName" : portals.moduleName,
       "field" : portals.field,
       "portalUrl" : portals.portalUrl,
-      "sampleDate" : portals.sampleData,
+      "sampleData" : portals.sampleData,
       "clientName" : portals.clientName,
       "navigate" : portals.navigate,
       "industry" : portals.industry
@@ -97,7 +97,7 @@ export class ViewPortalService {
       "moduleName" : portals.moduleName,
       "field" : portals.field,
       "portalUrl" : portals.portalUrl,
-      "sampleDate" : portals.sampleData,
+      "sampleData" : portals.sampleData,
       "clientName" : portals.clientName,
       "navigate" : portals.navigate,
       "industry" : portals.industry
@@ -107,6 +107,31 @@ export class ViewPortalService {
     this.spinner.show();
     return this.httpClient.post<any>(
       "http://localhost:8083/testSuiteAPIService/deltePortal", portal, this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide();
+          return userData;
+        })
+      );
+  }
+
+  public navigatePortal(portals) {
+    let portal = {
+      "portalID":portals.portalID,
+      "portalName" : portals.portalName,
+      "moduleName" : portals.moduleName,
+      "field" : portals.field,
+      "portalUrl" : portals.portalUrl,
+      "sampleData" : portals.sampleData,
+      "clientName" : portals.clientName,
+      "navigate" : portals.navigate,
+      "industry" : portals.industry
+      
+      
+    };
+    this.spinner.show();
+    return this.httpClient.post<any>(
+      "http://localhost:8083/testSuiteAPIService/navigatePortal", portal, this.jwt())
       .pipe(
         map(userData => {
           this.spinner.hide();
