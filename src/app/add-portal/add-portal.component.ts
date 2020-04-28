@@ -84,6 +84,7 @@ export class AddPortalComponent implements OnInit {
       }else{
         this.sampleName=ev.target.files[0].name.substring(0, ev.target.files[0].name.lastIndexOf("."))
       }
+      
   let workBook = null;
   let jsonData = null;
   const reader = new FileReader();
