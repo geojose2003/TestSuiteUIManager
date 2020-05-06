@@ -42,8 +42,13 @@
           
         </div>
         <div class="custom-file">
+
+          <input type="file" class="form-control" (change)="uploadedFile($event,'field')" placeholder="Upload file" accept=".xlsx"/>
+           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('field')">View</button>
+
           <input type="file" class="form-control" (change)="onFileChange($event,'fields')" placeholder="Upload file" accept=".xlsx">
            <button class="btn-secondary" style="height: 36px;" data-trigger="focus"  type="button" (click)="readAsJson('fields')">View</button>
+
            
         </div>
       </div>
@@ -54,8 +59,13 @@
           
         </div>
         <div class="custom-file">
+
+          <input type="file" class="form-control" (change)="uploadedFile($event,'sampleData')" placeholder="Upload file" accept=".xlsx"/>
+           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('sampleData')">View</button>
+
           <input type="file" class="form-control" (change)="onFileChange($event,'sample')" placeholder="Upload file" accept=".xlsx">
            <button class="btn-secondary" style="height: 36px;"  data-trigger="focus"  type="button" (click)="readAsJson('sample')">View</button>
+
            
         </div>
       </div>
