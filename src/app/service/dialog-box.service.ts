@@ -65,6 +65,29 @@ export class DialogBoxService {
     );
   }
 
+  editNewField(field: FormData) {
+    
+    let fieldDtls = {
+      "fieldID" : field.get("fieldID").toString(),
+      "fieldName" : field.get("fieldName").toString(),
+      "fieldType" : field.get("fieldType").toString(),
+      "fieldInfo" : field.get("fieldInfo").toString(),
+      "portalID" : field.get("portalID").toString(),
+      "fieldNamePatterns" : field.get("fieldNamePatterns").toString(),
+      "testData" : field.get("testData").toString()
+     
+    };
+    this.spinner.show();
+    return this.httpClient
+    .post<any>("http://localhost:8083/testSuiteAPIService/editNewField", fieldDtls,this.jwt())
+    .pipe(
+      map(userData => {
+        this.spinner.hide();
+        return userData;
+      })
+    );
+  }
+
   deleteContact(id: number) {
     const contact = this._contactList.findIndex(c => c.portalID === id);
     this._contactList.splice(contact, 1);

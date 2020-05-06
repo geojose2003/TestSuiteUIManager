@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewPortalComponent } from './view-portal/view-portal.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { NewFieldDialogBoxComponent } from './newFieldDialog-box/newFieldDialog-box.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddPortalComponent } from './add-portal/add-portal.component';
 import { FormsModule } from '@angular/forms';
@@ -32,10 +34,12 @@ import { AceEditorModule } from 'ng2-ace-editor';
   declarations: [
     AppComponent,
     ViewPortalComponent,
+    AdminPageComponent,
     AddPortalComponent,
     HeaderComponent,
     FooterComponent,
     DialogBoxComponent,
+    NewFieldDialogBoxComponent,
     JsonViewComponent,
     LoginComponent,
     SignUpComponent,

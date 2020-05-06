@@ -80,8 +80,8 @@ deletPortal(portal): void {
   navigatePortal(portal): void {
     this.service.navigatePortal(portal).subscribe((data)=>{
       if(data){
-        window.location.reload()
-        this.router.navigate(["/viewPortal"])
+        //window.location.reload()
+        this.router.navigate(["/adminPage"])
       }
     },(err)=>{
       console.log("failure"+err.log);
@@ -96,5 +96,3 @@ export interface PeriodicElement {
   fields: string;
   action: string;
 }
-
-
