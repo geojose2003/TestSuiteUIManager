@@ -1,0 +1,52 @@
+<mat-card-header>
+  <mat-toolbar color="primary" class="toolbar">
+    <mat-card-title style="text-align: center;">Edit new field Information</mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <mat-icon style="padding-left: 650px;" (click)="onNoClick()">cancel</mat-icon>
+  </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+  <div class="container">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="form-group">
+        <div class="row">
+          <div style="padding-top: 23px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">fieldID</label>
+            <input type="text" formControlName="fieldID" class="form-control" readonly>
+          </div>
+          <div style="padding-top: 23px" class="col-md-6">
+            <label style="font-weight: bold;">fieldName</label>
+            <input type="text" formControlName="fieldName" class="form-control" readonly>
+          </div>
+          <div style="padding-top: 23px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">fieldType</label>
+            <input type="text" formControlName="fieldType" class="form-control" readonly>
+          </div>
+          <div style="padding-top: 23px" class="col-md-6">
+            <label style="font-weight: bold;">fieldInfo</label>
+            <input type="text" formControlName="fieldInfo" class="form-control">
+          </div>
+           <div style="padding-top: 23px" class="col-md-6">
+            <label style="font-weight: bold;">portalID</label>
+            <input type="text" formControlName="portalID" class="form-control" readonly>
+          </div>
+          <div style="padding-top: 10px"class="col-md-6">
+            <label style="font-weight: bold;">field Name Patterns</label>
+            <input type="text" formControlName="fieldNamePatterns" class="form-control">
+          </div>
+          <div style="padding-top: 10px;padding-left: 33px;" class="col-md-6">
+            <label style="font-weight: bold;">testData</label>
+            <input type="text" formControlName="testData" class="form-control">
+          </div>
+                    
+            <div style="padding-left: 800px;" class="col-md-6">
+            <button style="margin-top:12px;" type="submit" class="btn btn-success">
+              <mat-icon>save</mat-icon>
+            </button>
+            
+          </div>
+        </div>
+     </div>
+    </form>
+  </div>
+</mat-card-content>
