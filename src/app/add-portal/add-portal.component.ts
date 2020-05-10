@@ -27,10 +27,13 @@ export class AddPortalComponent implements OnInit {
   sampleData:any;
   fieldName:any;
   sampleName:any;
+  hide=true;
 
   form: FormGroup = new FormGroup({
     portalName: new FormControl(''),
     moduleName: new FormControl(''),
+    userNameForPortal: new FormControl(''),
+    password: new FormControl(''),
     portalUrl: new FormControl(''),
     industry: new FormControl(''),
     clientName: new FormControl(''),
@@ -128,6 +131,8 @@ export class AddPortalComponent implements OnInit {
    formData.append("portalName",this.form.get('portalName').value);
    formData.append("moduleName",this.form.get('moduleName').value);
    formData.append("portalUrl",this.form.get('portalUrl').value);
+   formData.append("userNameForPortal",this.form.get('userNameForPortal').value);
+   formData.append("password",this.form.get('password').value);
    formData.append("field",this.fields);
    formData.append("clientName",this.form.get('clientName').value);
    formData.append("industry",this.form.get('industry').value);

@@ -32,6 +32,15 @@
       <input type="text" class="form-control" [(ngModel)]="moduleName" formControlName="moduleName" id="module Name" >
     </div> 
     <div class="form-group">
+      <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">User Name</label>
+      <input type="text" class="form-control" [(ngModel)]="userNameForPortal" formControlName="userNameForPortal" id="user Name" >
+    </div> 
+    <div class="form-group">
+      <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">Password</label>
+      <input [type]="hide ? 'password': 'text'" class="form-control" [(ngModel)]="password" formControlName="password" id="password" >
+      <i style="padding-left: 500px;" class="material-icons" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
+    </div>
+    <div class="form-group">
       <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">Portal URL*</label>
       <input type="text" class="form-control" [(ngModel)]="portalUrl" formControlName="portalUrl" id="portal Name" >
     </div> 
@@ -42,14 +51,8 @@
           
         </div>
         <div class="custom-file">
-
-          <input type="file" class="form-control" (change)="uploadedFile($event,'field')" placeholder="Upload file" accept=".xlsx"/>
-           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('field')">View</button>
-
           <input type="file" class="form-control" (change)="onFileChange($event,'fields')" placeholder="Upload file" accept=".xlsx">
            <button class="btn-secondary" style="height: 36px;" data-trigger="focus"  type="button" (click)="readAsJson('fields')">View</button>
-
-           
         </div>
       </div>
       <label style="font-weight: bold;padding-top: 15px;color:#7a0099;">Add Sample-Data* </label>
@@ -59,10 +62,6 @@
           
         </div>
         <div class="custom-file">
-
-          <input type="file" class="form-control" (change)="uploadedFile($event,'sampleData')" placeholder="Upload file" accept=".xlsx"/>
-           <button class="btn-secondary" style="height: 36px;" data-toggle="popover" data-trigger="focus" data-content="{Name:String,PhoneNumber:Int}" type="button" (click)="readAsJson('sampleData')">View</button>
-
           <input type="file" class="form-control" (change)="onFileChange($event,'sample')" placeholder="Upload file" accept=".xlsx">
            <button class="btn-secondary" style="height: 36px;"  data-trigger="focus"  type="button" (click)="readAsJson('sample')">View</button>
 

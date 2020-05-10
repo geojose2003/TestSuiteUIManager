@@ -34,7 +34,9 @@ export class DialogBoxComponent implements OnInit {
       PortalUrl: [ this.data.portalUrl, [Validators.required]],
       ClientName: [ this.data.clientName, [Validators.required]],
       Navigate: [ this.data.navigate, [Validators.required]],
-      Industry: [ this.data.industry, [Validators.required]]
+      Industry: [ this.data.industry, [Validators.required]],
+      UserNameForPortal: [ this.data.userNameForPortal, [Validators.required]],
+      Password: [ this.data.password, [Validators.required]],
     });
   }
 
@@ -52,6 +54,8 @@ export class DialogBoxComponent implements OnInit {
       formData.append("clientName",this.form.get('ClientName').value);
       formData.append("navigate",this.form.get('Navigate').value);
       formData.append("industry",this.form.get('Industry').value);
+      formData.append("userNameForPortal",this.form.get('UserNameForPortal').value);
+      formData.append("password",this.form.get('Password').value);
        
   this.dialogService.editPortal(formData).subscribe((data)=>{
     if(data){

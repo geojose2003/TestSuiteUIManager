@@ -13,9 +13,9 @@ import {MatTableDataSource, MatSort,MatDialog ,MatPaginator} from '@angular/mate
 })
 export class ViewPortalComponent implements OnInit {
   portal: Portal[];
-  
+  hide=true;
   isPopupOpened = true;
-  displayedColumns: string[] = ['PortalID','Industry','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Delete','Update','Run'];
+  displayedColumns: string[] = ['PortalID','Industry','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'UserNameForPortal','Password','Fields','SampleData','Delete','Update','Run'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
@@ -68,6 +68,7 @@ export class ViewPortalComponent implements OnInit {
     });
 }
 deletPortal(portal): void {
+  if(confirm("Are you sure to delete ")) {
     this.service.deletePortal(portal).subscribe((data)=>{
       if(data){
         window.location.reload()
@@ -76,6 +77,7 @@ deletPortal(portal): void {
     },(err)=>{
       console.log("failure"+err.log);
     });
+  }
   }
   navigatePortal(portal): void {
     this.service.navigatePortal(portal).subscribe((data)=>{

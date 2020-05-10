@@ -48,7 +48,9 @@ export class AddPortalService {
           "sampleData" : field.get("sampleData").toString(),
           "clientName" : field.get("clientName").toString(),
           "industry" : field.get("industry").toString(),
-          "navigate" : field.get("navigate").toString()
+          "navigate" : field.get("navigate").toString(),
+          "userNameForPortal" : field.get("userNameForPortal").toString(),
+          "password" : field.get("password").toString() 
          
         };
         this.spinner.show();

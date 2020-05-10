@@ -68,6 +68,7 @@ export class AdminPageComponent implements OnInit {
     });
 }
 deleteNewField(id: number): void {
+  if(confirm("Are you sure to delete ")) {
   this.service.deleteNewField(id).subscribe((data)=>{
     if(data){
       window.location.reload()
@@ -76,6 +77,7 @@ deleteNewField(id: number): void {
   },(err)=>{
     console.log("failure"+err.log);
   });
+}
 }
   
 }
