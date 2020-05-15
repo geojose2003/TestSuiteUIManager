@@ -15,7 +15,7 @@ export class ViewPortalComponent implements OnInit {
   portal: Portal[];
   hide=true;
   isPopupOpened = true;
-  displayedColumns: string[] = ['PortalID','Industry','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'UserNameForPortal','Password','Fields','SampleData','Delete','Update','Run'];
+  displayedColumns: string[] = ['PortalID','Industry','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Delete','Update','Run'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
