@@ -12,12 +12,18 @@
 <h2 style="color:#7a0099;">Add Portal to TestSuiteRunner</h2>
   <div class="col-sm-5" style="padding-top: 20px;">
     <div class="form-group">
-      <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Industry*</label>
-      <input type="text" class="form-control" formControlName="industry" [(ngModel)]="industry" id="industry" aria-describedby="emailHelp" >
-       </div>
+        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Industry*</label>
+        <select class="custom-select" (change)="changeDrop($event,'industry')" [(ngModel)]="industry" formControlName="industry" >
+            <option [selected]="true">Choose your Industry</option>
+            <option *ngFor="let industry of Industry" [ngValue]="industry">{{industry}}</option>
+         </select>
+     </div>
        <div class="form-group">
         <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Client Name*</label>
-        <input type="text" class="form-control" formControlName="clientName" [(ngModel)]="clientName" id="clientName" aria-describedby="emailHelp" >
+        <select class="custom-select" (change)="changeDrop($event,'category')" [(ngModel)]="clientName" formControlName="clientName">
+            <option [selected]="true">Choose your Client</option>
+            <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
+         </select>
          </div>
     <div class="form-group">
       <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Navigate Field*</label>
@@ -25,11 +31,17 @@
        </div>
        <div class="form-group">
         <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Portal Name*</label>
-        <input type="text" class="form-control" formControlName="portalName" [(ngModel)]="portalName" id="portal Name" aria-describedby="emailHelp" >
+        <select class="custom-select" (change)="changeDrop($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">
+          <option [selected]="true"  >Choose your ClientPortal</option>
+          <option *ngFor="let portalName of PortalName" [ngValue]="portalName">{{portalName}}</option>
+       </select>
          </div>
     <div class="form-group">
       <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">Module Name*</label>
-      <input type="text" class="form-control" [(ngModel)]="moduleName" formControlName="moduleName" id="module Name" >
+      <select class="custom-select" (change)="changeDrop($event,'module')"  [(ngModel)]="moduleName" formControlName="moduleName">
+        <option [selected]="true">Choose your ClientModule</option>
+        <option *ngFor="let moduleName of ModuleName" [ngValue]="moduleName">{{moduleName}}</option>
+     </select>
     </div> 
     <div class="form-group">
       <label for="exampleInputPassword1" style="font-weight: bold;color:#7a0099;">User Name for Portal</label>

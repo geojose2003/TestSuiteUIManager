@@ -38,6 +38,22 @@ export class AddPortalService {
       }
       return options;
   
+      
+    }
+    getvalueForDropdown(value,drop){
+      let dropDownValue = {
+        "id" : drop,
+        "dropValue" : value
+      }
+      return this.httpClient
+      .post<any>("http://localhost:8083/testSuiteAPIService/getvalueForDropdown", dropDownValue,this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide(); 
+          
+          return userData;
+        })
+      );
     }
     addPortal(field: FormData){ 
         let portal = {

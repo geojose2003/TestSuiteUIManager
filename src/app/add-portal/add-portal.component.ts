@@ -7,12 +7,19 @@ import { FormGroup } from '@angular/forms';
 import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {AddPortalService} from '../service/add-portal.service';
 import { NgxSpinnerService } from "ngx-spinner";
-
+export class DropData {
+  constructor(
+    public id: number,
+    public dropValue: string,
+   
+  ) {}
+}
 @Component({
   selector: "add-portals",
   templateUrl: "./add-portal.component.html",
   styleUrls: ["./add-portal.component.css"]
 })
+
 export class AddPortalComponent implements OnInit {
  
   title = 'read-excel-in-angular8';
@@ -28,9 +35,11 @@ export class AddPortalComponent implements OnInit {
   fieldName:any;
   sampleName:any;
   hide=true;
-
+  userlist: any;
+  values = ['AM', 'PM'];
+  portalName = this.values[1];
   form: FormGroup = new FormGroup({
-    portalName: new FormControl(''),
+    portalName: new FormControl('sdsds'),
     moduleName: new FormControl(''),
     userNameForPortal: new FormControl(''),
     password: new FormControl(''),
@@ -42,9 +51,16 @@ export class AddPortalComponent implements OnInit {
   constructor(private httpClientService: HttpClientService,public addPortalService: AddPortalService,
     private router: Router,private spinner: NgxSpinnerService) {}
 
-  ngOnInit() {}
-
-  
+  ngOnInit() {
+    let defaultId = "selesaabbb";
+   var portalName = 'sdsb';
+    this.form.controls['portalName'].setValue(defaultId);
+  }
+Industry: any = ['HealthCare','Retail']
+ClientName: any = []
+PortalName: any =[]
+ModuleName: any =[]
+DropData: any=[]
   uploadedFile(event,option) { 
     this.fileUploaded = event.target.files[0];
     if(option=='field'){
@@ -54,6 +70,37 @@ export class AddPortalComponent implements OnInit {
         this.sampleName=event.target.files[0].name;
       }
     this.readExcel(option);
+  }
+  changeDrop(e,drop){
+    this.spinner.show();
+    var dropvalue=e.target.value;
+    if(drop=='industry'){
+    this.ClientName=[];
+    }else if(drop=='category'){
+      this.PortalName=[];
+    } else if(drop=='portal'){
+      this.ModuleName=[];
+    }
+    
+    this.addPortalService.getvalueForDropdown(dropvalue,drop).subscribe((data)=>{
+      if(data){
+      this.userlist=data;
+      for (let i = 0; i < data.length; i++) {
+        let dropValue=this.userlist[i].dropValue;
+       if(drop=='industry'){
+        this.ClientName.push(dropValue);
+       }else if(drop=='category'){
+        this.PortalName.push(dropValue);
+       }
+       else if(drop=='portal'){
+        this.ModuleName.push(dropValue);
+       }
+      }
+      this.spinner.hide();
+      }
+    },(err)=>{
+      console.log("failure"+err.log);
+    })
   }
   readExcel(option) {
     alert("option"+option)
@@ -138,7 +185,7 @@ export class AddPortalComponent implements OnInit {
    formData.append("industry",this.form.get('industry').value);
    formData.append("navigate",this.form.get('navigate').value);
    formData.append("sampleData",this.sampleData);
-   console.log("this.fields"+this.fields);
+   console.log("this.form.get('portalName').value"+this.form.get('portalName').value);
   this.addPortalService.addPortal(formData).subscribe((data)=>{
     if(data){
       this.router.navigate(["/viewPortal"])
