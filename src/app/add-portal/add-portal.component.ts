@@ -39,7 +39,8 @@ export class AddPortalComponent implements OnInit {
   values = ['AM', 'PM'];
   portalName = this.values[1];
   form: FormGroup = new FormGroup({
-    portalName: new FormControl('sdsds'),
+    portalName: new FormControl(''),
+    categoryName: new FormControl(''), 
     moduleName: new FormControl(''),
     userNameForPortal: new FormControl(''),
     password: new FormControl(''),
@@ -58,6 +59,7 @@ export class AddPortalComponent implements OnInit {
   }
 Industry: any = ['HealthCare','Retail']
 ClientName: any = []
+CategoryName: any = []
 PortalName: any =[]
 ModuleName: any =[]
 DropData: any=[]
@@ -75,10 +77,13 @@ DropData: any=[]
     this.spinner.show();
     var dropvalue=e.target.value;
     if(drop=='industry'){
-    this.ClientName=[];
+    this.CategoryName=[];
     }else if(drop=='category'){
+      this.ClientName=[];
+    }else if(drop=='client'){
       this.PortalName=[];
-    } else if(drop=='portal'){
+    } 
+    else if(drop=='portal'){
       this.ModuleName=[];
     }
     
@@ -88,8 +93,11 @@ DropData: any=[]
       for (let i = 0; i < data.length; i++) {
         let dropValue=this.userlist[i].dropValue;
        if(drop=='industry'){
-        this.ClientName.push(dropValue);
+        this.CategoryName.push(dropValue);
        }else if(drop=='category'){
+        this.ClientName.push(dropValue);
+       }
+       else if(drop=='client'){
         this.PortalName.push(dropValue);
        }
        else if(drop=='portal'){
@@ -176,6 +184,7 @@ DropData: any=[]
   this.spinner.show();
    var formData: any = new FormData();
    formData.append("portalName",this.form.get('portalName').value);
+   formData.append("categoryName",this.form.get('categoryName').value);
    formData.append("moduleName",this.form.get('moduleName').value);
    formData.append("portalUrl",this.form.get('portalUrl').value);
    formData.append("userNameForPortal",this.form.get('userNameForPortal').value);

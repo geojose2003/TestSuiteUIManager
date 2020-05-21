@@ -19,16 +19,23 @@
          </select>
      </div>
        <div class="form-group">
-        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Client Name*</label>
-        <select class="custom-select" (change)="changeDrop($event,'category')" [(ngModel)]="clientName" formControlName="clientName">
-            <option [selected]="true">Choose your Client</option>
-            <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
+        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Category Name*</label>
+        <select class="custom-select" (change)="changeDrop($event,'category')" [(ngModel)]="categoryName" formControlName="categoryName">
+            <option [selected]="true">Choose your ClientCategory</option>
+            <option *ngFor="let categoryName of CategoryName" [ngValue]="categoryName">{{categoryName}}</option>
          </select>
          </div>
     <div class="form-group">
       <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Navigate Field*</label>
       <input type="text" class="form-control" formControlName="navigate" [(ngModel)]="navigate" id="navigate" aria-describedby="emailHelp" >
        </div>
+       <div class="form-group">
+        <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Client Name*</label>
+        <select class="custom-select" (change)="changeDrop($event,'client')"  [(ngModel)]="clientName" formControlName="clientName">
+          <option [selected]="true"  >Choose your ClientName</option>
+          <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
+       </select>
+         </div>
        <div class="form-group">
         <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Portal Name*</label>
         <select class="custom-select" (change)="changeDrop($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">

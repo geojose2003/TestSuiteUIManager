@@ -59,6 +59,7 @@ export class AddPortalService {
         let portal = {
           "portalName" : field.get("portalName").toString(),
           "moduleName" : field.get("moduleName").toString(),
+          "categoryName" : field.get("categoryName").toString(),
           "portalUrl" : field.get("portalUrl").toString(),
           "field" : field.get("field").toString(),
           "sampleData" : field.get("sampleData").toString(),

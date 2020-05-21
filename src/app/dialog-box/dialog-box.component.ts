@@ -35,6 +35,7 @@ export class DialogBoxComponent implements OnInit {
       ClientName: [ this.data.clientName, [Validators.required]],
       Navigate: [ this.data.navigate, [Validators.required]],
       Industry: [ this.data.industry, [Validators.required]],
+      Category: [ this.data.categoryName, [Validators.required]],
       UserNameForPortal: [ this.data.userNameForPortal, [Validators.required]],
       Password: [ this.data.password, [Validators.required]],
     });
@@ -48,6 +49,7 @@ export class DialogBoxComponent implements OnInit {
       formData.append("portalID",this.form.get('PortalId').value);
       formData.append("portalName",this.form.get('PortalName').value);
       formData.append("moduleName",this.form.get('ModuleName').value);
+      formData.append("categoryName",this.form.get('Category').value);
       formData.append("field",this.form.get('Field').value);
       formData.append("sampleData",this.form.get('SampleData').value);
       formData.append("portalUrl",this.form.get('PortalUrl').value);

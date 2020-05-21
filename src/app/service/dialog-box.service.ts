@@ -46,6 +46,7 @@ export class DialogBoxService {
       "portalID" : field.get("portalID").toString(),
       "portalName" : field.get("portalName").toString(),
       "moduleName" : field.get("moduleName").toString(),
+      "categoryName" : field.get("categoryName").toString(),
       "userNameForPortal" : field.get("userNameForPortal").toString(),
       "password" : field.get("password").toString(),
       "field" : field.get("field").toString(),
