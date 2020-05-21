@@ -47,7 +47,7 @@ export class NewFieldDialogBoxComponent implements OnInit {
       formData.append("fieldType",this.form.get('fieldType').value);
       formData.append("fieldInfo",this.form.get('fieldInfo').value);
       formData.append("portalID",this.form.get('portalID').value);
-      formData.append("fieldNamePatterns",this.form.get('fieldNamePatterns').value);
+      formData.append("fieldNamePatterns",this.form.get('fieldNamePatterns').value.toLowerCase());
       formData.append("testData",this.form.get('testData').value);
              
   this.dialogService.editNewField(formData).subscribe((data)=>{
