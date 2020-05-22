@@ -110,6 +110,46 @@ DropData: any=[]
       console.log("failure"+err.log);
     })
   }
+
+  changeDropPortal(e,drop){
+    var info =this.form.get('clientName').value;
+    console.log("info "+this.form.get('clientName').value);
+    this.spinner.show();
+    var dropvalue=e.target.value;
+    if(drop=='industry'){
+    this.CategoryName=[];
+    }else if(drop=='category'){
+      this.ClientName=[];
+    }else if(drop=='client'){
+      this.PortalName=[];
+    } 
+    else if(drop=='portal'){
+      this.ModuleName=[];
+    }
+    
+    this.addPortalService.getvalueForDropdownPortal(dropvalue,drop,info).subscribe((data)=>{
+      if(data){
+      this.userlist=data;
+      for (let i = 0; i < data.length; i++) {
+        let dropValue=this.userlist[i].dropValue;
+       if(drop=='industry'){
+        this.CategoryName.push(dropValue);
+       }else if(drop=='category'){
+        this.ClientName.push(dropValue);
+       }
+       else if(drop=='client'){
+        this.PortalName.push(dropValue);
+       }
+       else if(drop=='portal'){
+        this.ModuleName.push(dropValue);
+       }
+      }
+      this.spinner.hide();
+      }
+    },(err)=>{
+      console.log("failure"+err.log);
+    })
+  }
   readExcel(option) {
     alert("option"+option)
     let readFile = new FileReader();

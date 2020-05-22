@@ -38,7 +38,7 @@
          </div>
        <div class="form-group">
         <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;">Portal Name*</label>
-        <select class="custom-select" (change)="changeDrop($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">
+        <select class="custom-select" (change)="changeDropPortal($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">
           <option [selected]="true"  >Choose your ClientPortal</option>
           <option *ngFor="let portalName of PortalName" [ngValue]="portalName">{{portalName}}</option>
        </select>
@@ -91,4 +91,3 @@
       </div>
 </div>
 </form>
-

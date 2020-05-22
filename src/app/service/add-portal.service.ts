@@ -25,7 +25,7 @@ export class AddPortalService {
         options = {
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json' ,
+            'Content-Type': 'application/json' ,
             'x-access-token':token,
             'Authorization':token
           }
@@ -44,6 +44,22 @@ export class AddPortalService {
       let dropDownValue = {
         "id" : drop,
         "dropValue" : value
+      }
+      return this.httpClient
+      .post<any>("http://localhost:8083/testSuiteAPIService/getvalueForDropdown", dropDownValue,this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide(); 
+          
+          return userData;
+        })
+      );
+    }
+    getvalueForDropdownPortal(value,drop,info){
+      let dropDownValue = {
+        "id" : drop,
+        "dropValue" : value,
+        "info" : info
       }
       return this.httpClient
       .post<any>("http://localhost:8083/testSuiteAPIService/getvalueForDropdown", dropDownValue,this.jwt())
@@ -82,4 +98,4 @@ export class AddPortalService {
 
           }
 
-}
+} 
