@@ -3,6 +3,8 @@ import { ViewPortalService, Portal } from "../service/view-portal.service";
 import { DialogBoxService } from "../service/dialog-box.service";
 import { DialogBoxComponent} from "../dialog-box/dialog-box.component";
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {MatTableDataSource, MatSort,MatDialog ,MatPaginator} from '@angular/material';
 
 
@@ -12,7 +14,11 @@ import {MatTableDataSource, MatSort,MatDialog ,MatPaginator} from '@angular/mate
   styleUrls: ["./view-portal.component.css"]
 })
 export class ViewPortalComponent implements OnInit {
+  form: FormGroup = new FormGroup({
+    browser: new FormControl('')})
   portal: Portal[];
+  browservalue="Chrome"
+  Browser: any = ['FireFox']
   hide=true;
   isPopupOpened = true;
   displayedColumns: string[] = ['PortalID','Industry','Category','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Result','Delete','Update','Run'];
@@ -32,6 +38,11 @@ export class ViewPortalComponent implements OnInit {
   });
   this.portalInfo.paginator = this.paginator;
     this.portalInfo.sort = this.sort;
+  }
+  changeDrop(e,drop){
+    var dropvalue=e.target.value;
+    this.browservalue=dropvalue;
+    console.log(this.browservalue)
   }
   editPortal(id: number) {
     this.isPopupOpened = true;
@@ -80,7 +91,8 @@ deletPortal(portal): void {
   }
   }
   navigatePortal(portal): void {
-    this.service.navigatePortal(portal).subscribe((data)=>{
+
+    this.service.navigatePortal(portal,this.browservalue).subscribe((data)=>{
       if(data){
         window.location.reload()
         this.router.navigate(["/viewPortal"])

@@ -8,8 +8,21 @@
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 
-<input style="float:right" (keyup)="applyFilter($event.target.value)" matInput placeholder="Search">
+<input style="float:left;margin-left: 43px" (keyup)="applyFilter($event.target.value)" matInput placeholder="Search">
+
 </mat-form-field>
+<form  [formGroup]="form">
+<div class="form-group row" style="padding-top: 20px;">
+    <label for="exampleInputEmail1" style="font-weight: bold;color:#7a0099;margin-left: 43px">Browser*</label>
+<div class="col-sm-10">
+  
+  <select  style="width: 20%"  class="custom-select" (change)="changeDrop($event,'browser')" [(ngModel)]="browser" formControlName="browser" >
+      <option [selected]="true">Chrome</option>
+      <option *ngFor="let browser of Browser" [ngValue]="browser">{{browser}}</option>
+   </select>
+</div>
+</div>
+</form>
 <table mat-table [dataSource]="portalInfo"  matSort class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.

@@ -17,7 +17,8 @@ export class Portal {
     public sampleData: string,
     public industry: string,
     public clientName: string,
-    public navigate: string
+    public navigate: string,
+    public browser: string
   ) {}
 }
 
@@ -124,7 +125,8 @@ export class ViewPortalService {
       );
   }
 
-  public navigatePortal(portals) {
+  public navigatePortal(portals,browser) {
+    console.log("browse"+browser)
     let portal = {
       "portalID":portals.portalID,
       "portalName" : portals.portalName,
@@ -137,7 +139,8 @@ export class ViewPortalService {
       "sampleData" : portals.sampleData,
       "clientName" : portals.clientName,
       "navigate" : portals.navigate,
-      "industry" : portals.industry
+      "industry" : portals.industry,
+      "browser" : browser
       
       
     };
