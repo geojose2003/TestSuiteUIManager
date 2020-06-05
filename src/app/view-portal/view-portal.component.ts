@@ -15,7 +15,7 @@ export class ViewPortalComponent implements OnInit {
   portal: Portal[];
   hide=true;
   isPopupOpened = true;
-  displayedColumns: string[] = ['PortalID','Industry','Category','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Delete','Update','Run'];
+  displayedColumns: string[] = ['PortalID','Industry','Category','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Result','Delete','Update','Run'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
@@ -82,8 +82,8 @@ deletPortal(portal): void {
   navigatePortal(portal): void {
     this.service.navigatePortal(portal).subscribe((data)=>{
       if(data){
-        //window.location.reload()
-        this.router.navigate(["/adminPage"])
+        window.location.reload()
+        this.router.navigate(["/viewPortal"])
       }
     },(err)=>{
       console.log("failure"+err.log);
