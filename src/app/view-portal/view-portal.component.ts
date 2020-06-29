@@ -7,21 +7,34 @@ import { FormGroup } from '@angular/forms';
 import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {MatTableDataSource, MatSort,MatDialog ,MatPaginator} from '@angular/material';
 
-
+export class ImageLocation {
+  constructor(
+    public pathId: number,
+    public portalID: number,
+    public imgPath: string,
+    public folderName: string,
+    public imageName: string
+    
+  ) {}
+}
 @Component({
   selector: "app-portals",
   templateUrl: "./view-portal.component.html",
   styleUrls: ["./view-portal.component.css"]
 })
+
 export class ViewPortalComponent implements OnInit {
   form: FormGroup = new FormGroup({
     browser: new FormControl('')})
   portal: Portal[];
+  imgList:any;
+  imageLocation: ImageLocation[];
   browservalue="Chrome"
   Browser: any = ['FireFox']
   hide=true;
   isPopupOpened = true;
-  displayedColumns: string[] = ['PortalID','Industry','Category','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Result','Delete','Update','Run'];
+  Imagepath: any=[]
+  displayedColumns: string[] = ['PortalID','Industry','Category','ClientName','Navigation', 'PortalName', 'PortalUrl','ModuleName', 'Fields','SampleData','Status','Result','Delete','Update','Run'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
@@ -78,6 +91,7 @@ export class ViewPortalComponent implements OnInit {
       console.log("failure"+err.log);
     });
 }
+
 deletPortal(portal): void {
   if(confirm("Are you sure to delete ")) {
     this.service.deletePortal(portal).subscribe((data)=>{

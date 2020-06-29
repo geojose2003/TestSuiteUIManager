@@ -10,6 +10,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { NewFieldDialogBoxComponent } from './newFieldDialog-box/newFieldDialog-box.component';
 import {SignUpComponent} from './signUp/sign-up.component';
 import {JsonViewComponent} from './json-view/json-view.component';
+import{ViewResultComponent}from './view-result/view-result.component'
 
 const routes: Routes = [
   { path: '', component: ViewPortalComponent,canActivate:[AuthGaurdService] },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'dialogBox', component: DialogBoxComponent,canActivate:[AuthGaurdService] },
   { path: 'newFieldDialogBox', component: NewFieldDialogBoxComponent,canActivate:[AuthGaurdService] },
   { path: 'signup',component:SignUpComponent},
-  { path: 'jsonView',component:JsonViewComponent}
+  { path: 'jsonView',component:JsonViewComponent},
+  { path: 'viewResult',component:ViewResultComponent}
 ];
 
 @NgModule({

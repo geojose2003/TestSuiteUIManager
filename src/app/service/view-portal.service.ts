@@ -18,7 +18,8 @@ export class Portal {
     public industry: string,
     public clientName: string,
     public navigate: string,
-    public browser: string
+    public browser: string,
+    public folderName: string
   ) {}
 }
 
@@ -68,6 +69,7 @@ export class ViewPortalService {
   getAllPortalList() {
     return this._contactList;
   }
+ 
   getField(portals,field){
     let portal = {
       "portalID":portals.portalID,

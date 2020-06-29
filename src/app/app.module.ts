@@ -29,6 +29,8 @@ import { DialogBoxService } from './service/dialog-box.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { ViewResultComponent } from './view-result/view-result.component';
+import { SafeUrlPipe } from './service/safe-url.pipe.service';
 ;
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { AceEditorModule } from 'ng2-ace-editor';
     JsonViewComponent,
     LoginComponent,
     SignUpComponent,
-    LogoutComponent  ],
+    SafeUrlPipe,
+    LogoutComponent,
+    ViewResultComponent  ],
   imports: [
     BrowserModule,
     AngularMaterialModule,
