@@ -1,41 +1,144 @@
-<!-- <div class="container">
-    <div>
-        User Name : <input type="text" name="username" [(ngModel)]="username"> Password : <input type="password" name="password" [(ngModel)]="password">
-    </div>
-    <button (click)=checkLogin() class="btn btn-success">
-    Login
-  </button>
-</div> -->
-
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <p *ngIf="error" class="error">
-                    {{ error }}
-                </p>
-            </table>
-        </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button (click)="checkLogin()" color="primary">Login</button>
-    </mat-card-actions>
-</mat-card>
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Test Suite Runner</title>
+      <!-- Bootstrap core CSS -->
+      <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+      <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="./assets/css/login.css" rel="stylesheet">
+   </head>
+   <body style= "background-image: url('./assets/images/login-bg.jpg');">
+      <div id="page-container" class="main-content">
+         <div id="content-wrap">
+            <div class="col-12 row">
+               <div class="col-6 bglogin">
+                  <div class="login-main-text">
+                     <img src="./assets/images/Cognizant-Big-white-Logo.png">
+                     <h2 class="headingstyle">Test Suite Runner</h2>
+                  </div>
+                  <div class="welcometext">
+                     <h4>Welcome !</h4>
+                     <p>to <span class="greentxt">Test Suite Runner </span>Application. Don't have an account ?
+                        <span class="greentxt"><a href="/signup" class="regsty">Register</a></span> here.
+                     </p>
+                  </div>
+                  <div class="boxdata">
+                     <div class=""><strong>Message/Note:</strong></div>
+                     <p class="lgtxt">Application related messages or notifications here...</p>
+                  </div>
+               </div>
+               
+               <div class="col-6">
+                  <div class="form-reg" style="display: none;">
+                     <h3 class="loginheading">Register</h3>
+                     <div class="mb-3">Please fill in this form to create an account!</div>
+                     <div class="col-12 row pad0">
+                        <div class="form-group col-6 pl-0">
+                           <label for="exampleFormControlSelect2">Business Unit</label>
+                           <select class="form-control" id="exampleFormControlSelect2">
+                              <option>select</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                           </select>
+                        </div>
+                        <div class="form-group col-6 ">
+                           <label for="exampleFormControlSelect2">Sub Business Unit</label>
+                           <select class="form-control" id="exampleFormControlSelect2">
+                              <option>select</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 row pad0">
+                        <div class="form-group col-6 pl-0">
+                           <label for="exampleFormControlSelect2">Claint Name</label>
+                           <select class="form-control" id="exampleFormControlSelect2">
+                              <option>select</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 row pad0">
+                        <div class="form-group col-6 pl-0">
+                           <label for="exampleFormControlSelect2">User Name</label>
+                           <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group col-6 ">
+                           <label for="exampleFormControlSelect2">Email ID</label>
+                           <input type="text" class="form-control" placeholder="">
+                        </div>
+                     </div>
+                     <div class="col-12 row pad0">
+                        <div class="form-group col-6 pl-0">
+                           <label for="exampleFormControlSelect2">Password <img src="./assets/images/infosml.png"></label>
+                           <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group col-6">
+                           <label for="exampleFormControlSelect2">Confirm Password</label>
+                           <input type="text" class="form-control" placeholder="">
+                        </div>
+                     </div>
+                     <div class="col-12 row pad0">
+                        <div class="custom-control custom-checkbox">
+                           <input type="checkbox" class="custom-control-input" id="customCheck1">
+                           <label class="custom-control-label" for="customCheck1">I agree to the Terms and Conditions and
+                           Privacy Policy</label>
+                        </div>
+                     </div>
+                     <div class="mt-2 mb-2">
+                        <button type="submit" class="btn btn-grn mb-2 mt-2">Signup</button>
+                     </div>
+                  
+                     <!--<p>Have already an account ? <a href=""><strong class="ancolor">Login</strong></a> here.</p>-->
+                  </div>
+                  <div class="login-form">
+                     <h3 class="loginheading">Login</h3>
+                     <div class="mb-3">Please Login to Continue.</div>
+                     <form>
+                        <div class="form-group">
+                           <label>User Name</label>
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                           <input class="form-control" [(ngModel)]="username" placeholder="Username" name="username" required>
+                           
+                        </div>
+                        <div class="form-group">
+                           <label>Password</label>
+                           <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                        <button type="submit" (click)="checkLogin()" class="btn btn-grn mb-2 mt-2">Login</button>
+                        </div>
+                     </form>
+                     <div class="col-12 row pad0">
+                        <div class="col-6 pad0"><a href="" class="ancolor"><strong>Forgot Password</strong></a></div>
+                        <div class="col-6 pad0 text-right"><a href="/signup"><strong class="ancolor">Signup</strong> </a> for New
+                           User
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <footer id="footer" style="margin-left: -525px;margin-bottom: 20px;">
+            ©2020 Cognizant, All Rights Reserved.
+         </footer>
+      </div>
+      <script src="js/jquery-3.5.1.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+   </body>
+</html>
