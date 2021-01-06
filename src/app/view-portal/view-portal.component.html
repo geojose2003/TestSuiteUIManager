@@ -1,92 +1,220 @@
+<!doctype html>
+<html lang="en">
 
-<mat-form-field>
-  <ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: white">Loading...</p>
-</ngx-spinner>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>Test Suite Runner</title>
+   <!-- Bootstrap core CSS -->
+   <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+   <link href="./assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+   <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="./assets/css/style.css" rel="stylesheet">
 
-<input style="float:right" (keyup)="applyFilter($event.target.value)" matInput placeholder="Search">
-</mat-form-field>
-<table mat-table [dataSource]="portalInfo"  matSort class="mat-elevation-z8">
+</head>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Position Column -->
-    <ng-container matColumnDef="PortalID">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> PortalID </th>
-      <td mat-cell *matCellDef="let element"> {{element.portalID}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Industry">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> Industry </th>
-      <td mat-cell *matCellDef="let element"> {{element.industry}} </td>
-    </ng-container>
-    <ng-container matColumnDef="ClientName">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> ClientName </th>
-      <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Navigation">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> Navigation </th>
-      <td mat-cell *matCellDef="let element"> {{element.navigate}} </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="PortalName">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> PortalName </th>
-      <td mat-cell *matCellDef="let element"> {{element.portalName}} </td>
-    </ng-container>
-    <ng-container matColumnDef="PortalUrl">
-      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> PortalName </th>
-      <td mat-cell *matCellDef="let element"> {{element.portalUrl}} </td>
-    </ng-container>
-    <!-- Weight Column -->
-    <ng-container matColumnDef="ModuleName">
-      <th style="font-weight: bold; font-size: 90%; " mat-header-cell *matHeaderCellDef mat-sort-header> ModuleName </th>
-      <td mat-cell style="width: 15%;" *matCellDef="let element"> {{element.moduleName}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Fields">
-      <th style="font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Field </th>
-      <td mat-cell  style="padding-left: 15px;width: 15%;" *matCellDef="let element"> 
-        <a  [routerLink]="[]" (click)="getField(element,'field')"  > view fields </a>
-      </td>
-      
-    </ng-container>
-    <ng-container matColumnDef="SampleData">
-      <th style="font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> SampleData </th>
-      <td mat-cell  style="padding-left: 15px;width: 15%;" *matCellDef="let element"> 
-       <a [routerLink]="[]" (click)="getField(element,'field')"  > view sampleData </a> 
- 
-      </td>
-      
-    </ng-container>
-    <ng-container matColumnDef="Update">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element">
-          <button style="margin-left: 28px;" mat-raised-button (click)="editPortal(element.portalID)"  > <mat-icon color="accent">edit</mat-icon>Edit</button>
-      </td>
-      
-  </ng-container>
-   
-      <ng-container matColumnDef="Delete">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element" >
-            <button  style="margin-left: 28px;" mat-raised-button (click)="deletPortal(element)" > <mat-icon color="accent">delete</mat-icon>Delete</button>
-        </td>
-    </ng-container>
-    <ng-container matColumnDef="Run">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element" >
-          <button  style="margin-left: 28px;" mat-raised-button (click)="deletPortal(element)" > <mat-icon color="accent">fast_forward</mat-icon>Run</button>
-      </td>
-  </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
-  
-  
+<body style="background-image: none;">
+   <div id="page-container" class="main-content">
+      <div id="content-wrap">
+
+         <nav class="header-nav navbar navbar-expand-lg static-top bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#"><img src="./assets/images/cognizant-logoHM.png"></a>
+
+            <!-- Links -->
+            <div>
+               <div class="nav-item">
+                  <a class="nav-link hdSty" href="#">Test Suite Runner</a>
+               </div>
+            </div>
+            <ul class="navbar-nav ml-auto navbar-top-links">
+               <li class="nav-item user-text pt-2">
+                  <div class="avatar"><img src="./assets/images/userIcon.png"></div>
+                  <div class="userData">
+                     <span class="hello">John, Smith</span>
+                     <span class="name">Sr. Manager</span>
+                  </div>
+               </li>
+               <li class="nav-item">
+                  <a routerLink="/logout" class="nav-link">
+                     <div><img src="./assets/images/logout.png"></div>
+                     <div class="userData">
+                        Logout
+                     </div>
+                    </a>
+               </li>
+
+            </ul>
+         </nav>
+         <div class="mainSection">
+            <div class="col-12 row pad0">
+               <div class="col-6 pad0">
+                  <h1 class="headingsty">View Portal</h1>
+                  <p class="smltxt">Already added portals details...</p>
+               </div>
+               <div class="col-6 pad0 text-right">
+                  <button type="button" class="btn btn-add"><img src="./assets/images/plssml.png" class="pr-2">Add New
+                     Portal</button>
+               </div>
+            </div>
+            <div class="col-12 row pad0">
+               <div class="table-responsive" id="viewDivTable">
+                  <div class="col-12 row pad0">
+                     <div class="col-8 pad0">
+                        <div class="form-group col-12 row pad0">
+                           <label class="col-1 pad0" style="padding-top:5px !important;font-weight: bold;">Search :</label>
+                           <input type="text" class="form-control col-3">
+                        </div>
+                     </div>
+                     <form  [formGroup]="form">
+                     <div class="col-4 pad0 text-right">
+                        <div class="form-group col-12 row pad0">
+                           <label  class="col-3 text-right pt-2">Browser :</label>
+                           <select class="form-control col-6 mr-2" style="width: 20%" (change)="changeDrop($event,'browser')" [(ngModel)]="browser" formControlName="browser">
+                            <option [selected]="true">Chrome</option>
+                            <option *ngFor="let browser of Browser" [ngValue]="browser">{{browser}}</option>  
+                            <!-- <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option> -->
+                           
+                           </select>
+<!--                         
+                        <select class="form-control col-2" id="exampleFormControlSelect1">
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                           <option>4</option>
+                           <option>5</option>
+                        </select> -->
+                     </div>
+                     </div>
+                  </form>
+                  </div>
+               
+                  <table mat-table [dataSource]="portalInfo"  matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="PortalID">
+                      <th style="color:white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> PortalID </th>
+                      <td mat-cell *matCellDef="let element"> {{element.portalID}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="BusinessUnit">
+                      <th style="color: white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> BusinessUnit </th>
+                      <td mat-cell *matCellDef="let element"> {{element.industry}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="SubBusinessUnit">
+                      <th style="color: white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> SubBusinessUnit </th>
+                      <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ClientName">
+                      <th style="color: white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> ClientName </th>
+                      <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="Navigation">
+                      <th style="font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> Navigation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.navigate}} </td>
+                    </ng-container> -->
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="PortalName">
+                      <th style="color: white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> PortalName </th>
+                      <td mat-cell *matCellDef="let element"> {{element.portalName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="PortalUrl">
+                      <th style="color: white; font-weight: bold; font-size: 90%;" mat-header-cell *matHeaderCellDef mat-sort-header> Portal Url </th>
+                      <td mat-cell *matCellDef="let element"> {{element.portalUrl}} </td>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="ModuleName">
+                      <th style="color: white; font-weight: bold; font-size: 90%; " mat-header-cell *matHeaderCellDef mat-sort-header> Module Name </th>
+                      <td mat-cell style="width: 15%;" *matCellDef="let element"> {{element.moduleName}} </td>
+                    </ng-container>
+                     
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Fields">
+                      <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Field </th>
+                      <td mat-cell  style="padding-left: 15px;width: 15%;" *matCellDef="let element"> 
+                        <a  [routerLink]="[]" (click)="getField(element,'field')"  > view fields </a>
+                      </td>
+                      
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="SampleData">
+                      <th style="font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> SampleData </th>
+                      <td mat-cell  style="padding-left: 15px;width: 15%;" *matCellDef="let element"> 
+                       <a [routerLink]="[]" (click)="getField(element,'sampleData')"  > view sampleData </a> 
+                 
+                      </td> 
+                      
+                    </ng-container> -->
+                    <ng-container matColumnDef="Status">
+                      <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+                      <td [ngStyle]="element.message=='Completed'?{'background-color':'green'} : {'background-color': 'yellow'}" mat-cell *matCellDef="let element">{{element.message}}
+                      
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Result">
+                      <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Result</th>
+                      <td  mat-cell *matCellDef="let element">
+                      
+                       <a [routerLink]="['/viewResult']" [queryParams]="{q:element.folderName}">View Result</a>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Run">
+                     <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef> Action </th>
+                     <td mat-cell *matCellDef="let element" >
+                         <button  style="margin-left: 28px;" mat-raised-button (click)="navigatePortal(element)" > <mat-icon color="accent">fast_forward</mat-icon>Run</button>
+                     </td>
+                 </ng-container>
+                    <!-- <ng-container matColumnDef="Action">
+                        <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+                        <a href="#">
+                            <img class="pr-1" src="./assets/images/GP1.png">
+                         </a>
+                         <a href="#">
+                            <img class="pr-1" src="./assets/images/edit.png">
+                         </a>
+                         <a href="#">
+                            <img class="pr-1" src="./assets/images/GP5.png">
+                         </a>
+                         <a href="#">
+                            <img class="pr-1" src="./assets/images/delete.png">
+                         </a>
+                      </ng-container> -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+      <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+      <footer id="footer">
+         ©2020 Cognizant, All Rights Reserved.
+      </footer>
+   </div>
+   <script src="./assets/js/jquery-3.5.1.min.js"></script>
+   <script src="./assets/js/bootstrap.min.js"></script>
+   <script src="./assets/js/jquery.dataTables.min.js"></script>
+   <script src="./assets/js/dataTables.bootstrap4.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function () {
+         $('#viewTb').DataTable({
+            "scrollX": true,
+            "searching": false,
+            "bLengthChange": false
+         });
+      });
+   </script>
+</body>
+
+</html>
