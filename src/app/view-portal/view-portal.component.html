@@ -58,8 +58,9 @@
                   <p class="smltxt">Already added portals details...</p>
                </div>
                <div class="col-6 pad0 text-right">
-                  <button type="button" class="btn btn-add"><img src="./assets/images/plssml.png" class="pr-2">Add New
+                  <button type="button"  class="btn btn-add" (click)="btnClick();"><img src="./assets/images/plssml.png" class="pr-2">Add New
                      Portal</button>
+                     
                </div>
             </div>
             <div class="col-12 row pad0">
@@ -67,34 +68,20 @@
                   <div class="col-12 row pad0">
                      <div class="col-8 pad0">
                         <div class="form-group col-12 row pad0">
-                           <label class="col-1 pad0" style="padding-top:5px !important;font-weight: bold;">Search :</label>
+                           <label class="col-1 pad0" style="padding-top:3px !important;font-weight: bold;">Search :</label>
                            <input type="text" class="form-control col-3">
                         </div>
                      </div>
                      <form  [formGroup]="form">
-                     <div class="col-4 pad0 text-right">
-                        <div class="form-group col-12 row pad0">
-                           <label  class="col-3 text-right pt-2">Browser :</label>
-                           <select class="form-control col-6 mr-2" style="width: 20%" (change)="changeDrop($event,'browser')" [(ngModel)]="browser" formControlName="browser">
-                            <option [selected]="true">Chrome</option>
-                            <option *ngFor="let browser of Browser" [ngValue]="browser">{{browser}}</option>  
-                            <!-- <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option> -->
-                           
-                           </select>
-<!--                         
-                        <select class="form-control col-2" id="exampleFormControlSelect1">
-                           <option>1</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
-                           <option>5</option>
-                        </select> -->
-                     </div>
-                     </div>
+                        <div class="col-4 pad0 text-right">
+                           <div class="form-group col-12 row pad0">
+                              <label for="exampleFormControlSelect1" class="col-3 text-right pt-2" style="margin-right:200px;">Browser :</label>
+                              <select class="form-control col-6 mr-2">
+                                 <option [selected]="true">Chrome</option>
+                              <option *ngFor="let browser of Browser" [ngValue]="browser">{{browser}}</option>
+                              </select>
+                        </div>
+                        </div>
                   </form>
                   </div>
                
@@ -168,27 +155,25 @@
                        <a [routerLink]="['/viewResult']" [queryParams]="{q:element.folderName}">View Result</a>
                       </td>
                     </ng-container>
-                    <ng-container matColumnDef="Run">
+                    <!-- <ng-container matColumnDef="Run">
                      <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef> Action </th>
+                     <td><a href="#">
+                        <img class="pr-1" src="./assets/images/GP1.png">
+                     </a>
+                     <a href="#">
+                        <img class="pr-1" src="./assets/images/edit.png">
+                     </a>
+                     <a href="#">
+                        <img class="pr-1" src="./assets/images/GP5.png">
+                     </a>
+                     <a href="#">
+                        <img class="pr-1" src="./assets/images/delete.png">
+                     </a></td>
                      <td mat-cell *matCellDef="let element" >
                          <button  style="margin-left: 28px;" mat-raised-button (click)="navigatePortal(element)" > <mat-icon color="accent">fast_forward</mat-icon>Run</button>
                      </td>
-                 </ng-container>
-                    <!-- <ng-container matColumnDef="Action">
-                        <th style="color: white; font-weight: bold; font-size: 90%;padding-left: 20px;" mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
-                        <a href="#">
-                            <img class="pr-1" src="./assets/images/GP1.png">
-                         </a>
-                         <a href="#">
-                            <img class="pr-1" src="./assets/images/edit.png">
-                         </a>
-                         <a href="#">
-                            <img class="pr-1" src="./assets/images/GP5.png">
-                         </a>
-                         <a href="#">
-                            <img class="pr-1" src="./assets/images/delete.png">
-                         </a>
-                      </ng-container> -->
+                 </ng-container> -->
+                    
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                   </table>
@@ -197,7 +182,9 @@
             </div>
          </div>
       </div>
-      <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+      <!-- <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator> -->
+     
+      <!-- <div class="col-sm-12 col-md-7" style="padding-left: 800px;"><div class="dataTables_paginate paging_simple_numbers" id="viewTb_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="viewTb_previous"><a href="#" aria-controls="viewTb" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="viewTb" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="viewTb_next"><a href="#" aria-controls="viewTb" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div> -->
       <footer id="footer">
          ©2020 Cognizant, All Rights Reserved.
       </footer>
