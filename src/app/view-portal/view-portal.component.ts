@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {MatTableDataSource, MatSort,MatDialog ,MatPaginator} from '@angular/material';
 
+
 export class ImageLocation {
   constructor(
     public pathId: number,
@@ -33,11 +34,11 @@ export class ViewPortalComponent implements OnInit {
   hide=true;
   isPopupOpened = true;
   Imagepath: any=[]
-  displayedColumns: string[] = ['PortalID','BusinessUnit','SubBusinessUnit','ClientName','PortalName', 'PortalUrl','ModuleName', 'Fields','Status','Result','Run'];
+  displayedColumns: string[] = ['PortalID','BusinessUnit','SubBusinessUnit','ClientName','PortalName', 'PortalUrl','ModuleName', 'Fields','Status','Result'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
-    private dialogService: DialogBoxService) {}
+    private dialogService: DialogBoxService ) {}
   @ViewChild(MatSort,{static: true}) sort : MatSort;
   @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
   _contactList: Portal[] = [];
@@ -90,7 +91,6 @@ export class ViewPortalComponent implements OnInit {
       console.log("failure"+err.log);
     });
 }
-
 deletPortal(portal): void {
   if(confirm("Are you sure to delete ")) {
     this.service.deletePortal(portal).subscribe((data)=>{
@@ -103,6 +103,9 @@ deletPortal(portal): void {
     });
   }
   }
+  btnClick= function () {
+    this.router.navigateByUrl('/addportal');
+};
   navigatePortal(portal): void {
 
     this.service.navigatePortal(portal,this.browservalue).subscribe((data)=>{
