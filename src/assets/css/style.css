@@ -118,5 +118,36 @@ font-weight: bold;
     color: #959595;
 }
 label{
-    font-weight: bold;
+    font-weight: bold
+    ;
+}
+.btn-reset{
+    background: #656565;
+    color: #fff;
+    width: 120px;
+}
+.back-btn{
+    background: #656565;
+    color: #fff;
+    
+}
+.btn-save{
+    width: 120px;
+    background: #0033A0;
+    color: #fff;
+}
+.modal-header{
+    background: #0033A0;
+    color: #fff;
+    padding: 10px;
+    border-radius: 0;
+}
+.close{
+    color: #fff !important;
+}
+.btn-ref{
+    background: #fff;
+    border: 1px solid #00B140;
+    color: #00B140;
+    width: 150px;
 }
