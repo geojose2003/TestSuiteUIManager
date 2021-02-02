@@ -10,11 +10,17 @@ export class Portal {
     public portalName: string,
     public portalUrl: string,
     public moduleName: string,
+    public categoryName: string,
+    public userNameForPortal: string,
+    public password: string,
     public field: string,
     public sampleData: string,
     public industry: string,
     public clientName: string,
-    public navigate: string
+    public navigate: string,
+    public browser: string,
+    public folderName: string
+    
   ) {}
 }
 
@@ -64,14 +70,18 @@ export class ViewPortalService {
   getAllPortalList() {
     return this._contactList;
   }
+ 
   getField(portals,field){
     let portal = {
       "portalID":portals.portalID,
       "portalName" : portals.portalName,
       "moduleName" : portals.moduleName,
+      "categoryName":portals.categoryName,
+      "userNameForPortal":portals.userNameForPortal,
+      "password":portals.password,
       "field" : portals.field,
       "portalUrl" : portals.portalUrl,
-      "sampleDate" : portals.sampleData,
+      "sampleData" : portals.sampleData,
       "clientName" : portals.clientName,
       "navigate" : portals.navigate,
       "industry" : portals.industry
@@ -95,9 +105,12 @@ export class ViewPortalService {
       "portalID":portals.portalID,
       "portalName" : portals.portalName,
       "moduleName" : portals.moduleName,
+      "categoryName":portals.categoryName,
+      "userNameForPortal":portals.userNameForPortal,
+      "password":portals.password,
       "field" : portals.field,
       "portalUrl" : portals.portalUrl,
-      "sampleDate" : portals.sampleData,
+      "sampleData" : portals.sampleData,
       "clientName" : portals.clientName,
       "navigate" : portals.navigate,
       "industry" : portals.industry
@@ -107,6 +120,36 @@ export class ViewPortalService {
     this.spinner.show();
     return this.httpClient.post<any>(
       "http://localhost:8083/testSuiteAPIService/deltePortal", portal, this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide();
+          return userData;
+        })
+      );
+  }
+
+  public navigatePortal(portals,browser) {
+    console.log("browse"+browser)
+    let portal = {
+      "portalID":portals.portalID,
+      "portalName" : portals.portalName,
+      "moduleName" : portals.moduleName,
+      "categoryName":portals.categoryName,
+      "userNameForPortal":portals.userNameForPortal,
+      "password":portals.password,
+      "field" : portals.field,
+      "portalUrl" : portals.portalUrl,
+      "sampleData" : portals.sampleData,
+      "clientName" : portals.clientName,
+      "navigate" : portals.navigate,
+      "industry" : portals.industry,
+      "browser" : browser
+      
+      
+    };
+    this.spinner.show();
+    return this.httpClient.post<any>(
+      "http://localhost:8083/testSuiteAPIService/navigatePortal", portal, this.jwt())
       .pipe(
         map(userData => {
           this.spinner.hide();
