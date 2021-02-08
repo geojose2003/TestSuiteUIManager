@@ -51,6 +51,7 @@
 
             </ul>
          </nav>
+         
          <div class="mainSection">
             <div class="col-12 row pad0">
                <div class="col-6 pad0">
@@ -61,79 +62,67 @@
                   <button type="button" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2">Back</button>
                </div>
             </div>
+            <form (ngSubmit)="submit()" [formGroup]="form">
             <div class="col-12 row pad0">
                <div class="col-12 row pad0">
                   <div class="form-group col-4 pl-0">
                      <label for="exampleFormControlSelect1">Business Unit * </label>
-                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>select</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                     <select class="form-control" (change)="changeDrop($event,'industry')" [(ngModel)]="industry" formControlName="industry" >
+                        <option [selected]="true">Choose your Industry</option>
+                        <option *ngFor="let industry of Industry" [ngValue]="industry">{{industry}}</option>
                      </select>
                   </div>
                   <div class="form-group col-4">
                      <label for="exampleFormControlSelect1">Sub Business Unit * </label>
-                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>select</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                     <select class="form-control" (change)="changeDrop($event,'category')" [(ngModel)]="categoryName" formControlName="categoryName">
+                        <option [selected]="true">Choose your ClientCategory</option>
+                        <option *ngFor="let categoryName of CategoryName" [ngValue]="categoryName">{{categoryName}}</option>
                      </select>
                   </div>
                   <div class="form-group col-4">
                      <label for="exampleFormControlSelect1">Client Name *</label>
-                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>select</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                     <select class="form-control" (change)="changeDrop($event,'client')"  [(ngModel)]="clientName" formControlName="clientName">
+                        <option [selected]="true"  >Choose your ClientName</option>
+                        <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
                      </select>
                   </div>
                </div>
                <div class="col-12 row pad0">
                   <div class="form-group col-4 pl-0">
                      <label for="exampleFormControlSelect1">Portal Name * </label>
-                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>select</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                     <select class="form-control" (change)="changeDropPortal($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">
+                        <option [selected]="true"  >Choose your ClientPortal</option>
+                        <option *ngFor="let portalName of PortalName" [ngValue]="portalName">{{portalName}}</option>
                      </select>
                   </div>
                   <div class="form-group col-4">
                      <label for="exampleFormControlSelect1">Module Name * </label>
-                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>select</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                     <select class="form-control" (change)="changeDrop($event,'module')"  [(ngModel)]="moduleName" formControlName="moduleName">
+                        <option [selected]="true">Choose your ClientModule</option>
+                        <option *ngFor="let moduleName of ModuleName" [ngValue]="moduleName">{{moduleName}}</option>
                      </select>
                   </div>
                   <div class="form-group col-4">
                      <label for="exampleFormControlSelect1">User Name for Portal</label>
-                     <input type="text" class="form-control" placeholder="Enter...">
+                     <input type="text" class="form-control" [(ngModel)]="userNameForPortal" formControlName="userNameForPortal" id="user Name" >
 
                   </div>
                </div>
                <div class="col-12 row pad0">
                   <div class="form-group col-4 pl-0">
                      <label for="exampleFormControlSelect1">Password </label>
-                     <input type="password" class="form-control" placeholder="Enter...">
+                     <input [type]="hide ? 'password': 'text'" class="form-control" [(ngModel)]="password" formControlName="password" id="password" >
+      <i style="padding-left: 500px;" class="material-icons" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
 
                   </div>
                   <div class="form-group col-8">
                      <label for="exampleFormControlSelect1">Portal URL *</label>
-                     <input type="text" class="form-control" placeholder="Enter...">
+                     <input type="text" class="form-control" [(ngModel)]="portalUrl" formControlName="portalUrl" id="portal Name" >
 
                   </div>
                </div>
             </div>
+            
             <div class="col-12 row pad0">
                <button type="submit" class="btn btn-add mr-2" data-toggle="modal" data-target="#addFields">
                   <img src="./assets/images/plssml.png" class="pr-2">Add Fields</button>
@@ -145,9 +134,10 @@
                <button type="submit" class="btn btn-save mr-2" data-toggle="modal"
                   data-target="#savePortal">Save</button>
             </div>
+            </form>
          </div>
       </div>
-
+   
       <!-- savePortal Modal -->
       <div class="modal fade" id="savePortal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
