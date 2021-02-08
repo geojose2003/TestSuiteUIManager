@@ -25,7 +25,7 @@ export class AddPortalService {
         options = {
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json' ,
+            'Content-Type': 'application/json' ,
             'x-access-token':token,
             'Authorization':token
           }
@@ -38,17 +38,52 @@ export class AddPortalService {
       }
       return options;
   
+      
+    }
+    getvalueForDropdown(value,drop){
+      let dropDownValue = {
+        "id" : drop,
+        "dropValue" : value
+      }
+      return this.httpClient
+      .post<any>("http://localhost:8083/testSuiteAPIService/getvalueForDropdown", dropDownValue,this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide(); 
+          
+          return userData;
+        })
+      );
+    }
+    getvalueForDropdownPortal(value,drop,info){
+      let dropDownValue = {
+        "id" : drop,
+        "dropValue" : value,
+        "info" : info
+      }
+      return this.httpClient
+      .post<any>("http://localhost:8083/testSuiteAPIService/getvalueForDropdown", dropDownValue,this.jwt())
+      .pipe(
+        map(userData => {
+          this.spinner.hide(); 
+          
+          return userData;
+        })
+      );
     }
     addPortal(field: FormData){ 
         let portal = {
           "portalName" : field.get("portalName").toString(),
           "moduleName" : field.get("moduleName").toString(),
+          "categoryName" : field.get("categoryName").toString(),
           "portalUrl" : field.get("portalUrl").toString(),
           "field" : field.get("field").toString(),
           "sampleData" : field.get("sampleData").toString(),
           "clientName" : field.get("clientName").toString(),
           "industry" : field.get("industry").toString(),
-          "navigate" : field.get("navigate").toString()
+          "navigate" : field.get("navigate").toString(),
+          "userNameForPortal" : field.get("userNameForPortal").toString(),
+          "password" : field.get("password").toString() 
          
         };
         this.spinner.show();
@@ -63,4 +98,4 @@ export class AddPortalService {
 
           }
 
-}
+} 
