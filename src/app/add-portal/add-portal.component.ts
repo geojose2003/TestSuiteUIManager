@@ -50,13 +50,26 @@ export class AddPortalComponent implements OnInit {
   });
   constructor(private httpClientService: HttpClientService,public addPortalService: AddPortalService,
     private router: Router,private spinner: NgxSpinnerService) {}
-
+Industry: any = []
   ngOnInit() {
     let defaultId = "selesaabbb";
    var portalName = 'sdsb';
     this.form.controls['portalName'].setValue(defaultId);
+      this.addPortalService.getvalueForDropdown('','industryLoadAll').subscribe((data)=>{
+      if(data){
+      this.userlist=data;
+      for (let i = 0; i < data.length; i++) {
+        let dropValue=this.userlist[i].dropValue;
+         this.Industry.push(dropValue);
+         
+      }
+      this.spinner.hide();
+      }
+    },(err)=>{
+      console.log("failure"+err.log);
+    })
   }
-Industry: any = ['HealthCare','Retail']
+
 ClientName: any = []
 CategoryName: any = []
 PortalName: any =[]
