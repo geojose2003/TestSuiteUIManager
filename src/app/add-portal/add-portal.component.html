@@ -167,29 +167,15 @@
                           </div>
                         </div>
                         <div class="form-group col-4 ">
-                           <label for="exampleFormControlSelect1">Field Info *</label>
-                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldInfo.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldInfo">
-                           <div *ngIf="submitted && f.FieldInfo.errors" class="invalid-feedback" style="display:block !important">
-                              <div *ngIf="f.FieldInfo.errors.required"> FieldInfo is required</div>
-                          </div>
-                        </div>
-                     </div>
-                     <div class="col-12 pad0 row">
-                        <div class="form-group col-4 pl-0 ">
-                           <label for="exampleFormControlSelect1">Portal ID *</label>
-                           <input type="text" class="form-control" [ngClass]="submitted && f.PortalId.errors?'is-invalid':''" placeholder="Enter..." formControlName="PortalId">
-                           <div *ngIf="submitted && f.PortalId.errors" class="invalid-feedback" style="display:block !important">
-                              <div *ngIf="f.PortalId.errors.required">PortalId is required</div>
-                          </div>
-                        </div>
-                        <div class="form-group col-4 ">
                            <label for="exampleFormControlSelect1">Field Name Patterns *</label>
                            <input type="text" class="form-control" [ngClass]="submitted && f.FieldPatterns.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldPatterns">
                            <div *ngIf="submitted && f.FieldPatterns.errors" class="invalid-feedback" style="display:block !important">
                               <div *ngIf="f.FieldPatterns.errors.required">FieldPatterns is required</div>
                           </div>
                         </div>
-                        <div class="form-group col-4">
+                     </div>
+                     <div class="col-12 pad0 row">
+                        <div class="form-group col-4 pl-0">
                            <label for="exampleFormControlSelect1">Test Data *</label>
                            <input type="text" class="form-control" [ngClass]="submitted && f.TestData.errors?'is-invalid':''" placeholder="Enter..." formControlName="TestData">
                            <div *ngIf="submitted && f.TestData.errors" class="invalid-feedback" style="display:block !important">
