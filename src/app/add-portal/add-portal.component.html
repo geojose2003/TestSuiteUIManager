@@ -1,57 +1,6 @@
-<!doctype html>
-<html lang="en">
 
-<head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description" content="">
-   <meta name="author" content="">
-   <title>Test Suite Runner</title>
-   <!-- Bootstrap core CSS -->
-   <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-   <link href="./assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-   <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-   <!-- Custom styles for this template -->
-   <link href="./assets/css/style.css" rel="stylesheet">
-
-</head>
-
-<body style="background-image: none;">
-   <div id="page-container" class="main-content">
+   <div id="page-container" class="main-content" style="background-image: none;background-color: white !important;">
       <div id="content-wrap">
-
-         <nav class="header-nav navbar navbar-expand-lg static-top bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#"><img src="./assets/images/cognizant-logoHM.png"></a>
-
-            <!-- Links -->
-            <div>
-               <div class="nav-item">
-                  <a class="nav-link hdSty" href="#">Test Suite Runner</a>
-               </div>
-            </div>
-            <ul class="navbar-nav ml-auto navbar-top-links">
-               <li class="nav-item user-text pt-2">
-                  <div class="avatar"><img src="./assets/images/userIcon.png"></div>
-                  <div class="userData">
-                     <span class="hello">John, Smith</span>
-                     <span class="name">Sr. Manager</span>
-                  </div>
-               </li>
-               <li class="nav-item">
-                <a routerLink="/logout" class="nav-link">
-                     <div><img src="./assets/images/logout.png"></div>
-                     <div class="userData">
-                        Logout
-                     </div>
-                  </a>
-               </li>
-
-            </ul>
-         </nav>
-         
          <div class="mainSection">
             <div class="col-12 row pad0">
                <div class="col-6 pad0">
@@ -59,10 +8,13 @@
                   <p class="smltxt">View Portal /</p>
                </div>
                <div class="col-6 pad0 text-right">
-                  <button type="button" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2"><a href="javascript:history.back()">Back</a></button>
+                  <button type="button" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2"><a href="javascript:history.back()" style="color:white !important">Back</a></button>
                </div>
             </div>
-            <form (ngSubmit)="submit()" [formGroup]="form">
+            <div class="col-12 row pad0"*ngIf="isFieldAdded" style="color:red !important">
+              {{addFieldsMessage}} 
+            </div>
+            <form  [formGroup]="form">
             <div class="col-12 row pad0">
                <div class="col-12 row pad0">
                   <div class="form-group col-4 pl-0">
@@ -110,10 +62,9 @@
                </div>
                <div class="col-12 row pad0">
                   <div class="form-group col-4 pl-0">
-                     <label for="exampleFormControlSelect1">Password </label>
-                     <input [type]="hide ? 'password': 'text'" class="form-control" [(ngModel)]="password" formControlName="password" id="password" >
-      <i style="padding-left: 500px;" class="material-icons" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
-
+                     <label for="exampleFormControlSelect1" style="display:block !important">Password </label>
+                     <input [type]="hide ? 'password': 'text'" class="form-control" [(ngModel)]="password" formControlName="password" id="password" style="display:inline-block !important;width:350px !important" >
+                     <i  class="material-icons" style="padding-left:14px;font-size:20px !important" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
                   </div>
                   <div class="form-group col-8">
                      <label for="exampleFormControlSelect1">Portal URL *</label>
@@ -124,7 +75,7 @@
             </div>
             
             <div class="col-12 row pad0">
-             <button type="button" class="btn btn-add mr-2" data-toggle="modal" data-target="#addFields">
+             <button type="button" class="btn btn-add mr-2" data-toggle="modal" (click)="onModalPopUpOpen()">
                   <img src="./assets/images/plssml.png" class="pr-2" >Add Fields</button>
                <!--<button type="submit" class="btn btn-add mr-2"><img src="./assets/images/plssml.png" class="pr-2">Add Sample
                   Data</button>-->
@@ -132,7 +83,7 @@
             <div class="col-12 mt-5 text-center">
                <button type="submit" class="btn btn-reset mr-2">Reset</button>
                <button type="submit" class="btn btn-save mr-2" data-toggle="modal"
-                  data-target="#savePortal">Save</button>
+                  (click)="submit()">Save</button>
             </div>
             </form>
          </div>
@@ -162,107 +113,100 @@
          </div>
       </div>
       <!-- addFields Modal -->
-      <div class="modal fade" id="addFields" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+      <div *ngIf="addFieldModalEnabled" [style.display]="addFieldModalEnabled?'block':'none'" class="modal fade show" id="addFields" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         >
          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Add Fields</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" (click)="onModalCloseClick()"  aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                   </button>
                </div>
                <div class="modal-body">
                   <h1 class="headingsty">File Upload</h1>
+                  <p style="color:red">{{popUpMsg}}</p>
                   <div class="col-12 pad0 row">
                      <div class="form-group  col-12 row pad0">
-                        <label for="exampleFormControlSelect1" class="col-12 pad0 pb-2">Add Fields *</label>
-                        <div class="custom-file col-9 mt-2">
-                           <input type="file" class="custom-file-input" id="customFile">
-                           <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label class="col-12 pad0 pb-2" for="exampleFormControlSelect1">Add Fields *</label>
+                        <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
+                           <input  #inputFile class="form-control" id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'fields')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                           <label  class="input-group-text" for="inputGroupFile02">Browse</label>
                         </div>
-                        <div class="col-3 mt-2">
-                           <button type="button" class="btn btn-ref">Refer Template</button>
+                        <div  class="col-3 mt-2" style="margin-top:6px !important">
+                           <button  class="btn btn-ref" type="button">Refer Template</button>
+                        </div>
+                     </div>
+                     <div class="form-group  col-12 row pad0">
+                        <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
+                           <input #inputFile1 class="form-control"  id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'sample')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                           <label  class="input-group-text" for="inputGroupFile02">Browse</label>
+                        </div>
+                        <div  class="col-3 mt-2" style="margin-top:6px !important">
+                           <button  class="btn btn-ref" type="button">Refer Template</button>
                         </div>
                      </div>
                   </div>
                   <hr>
                   <h1 class="headingsty"> Or Add Fields</h1>
+                  <form [formGroup]="addFieldForm">
                   <div class="col-12 pad0 row">
                      <div class="col-12 pad0 row">
                         <div class="form-group col-4 pl-0">
-                           <label for="exampleFormControlSelect1">Field ID *</label>
-                           <input type="text" class="form-control" placeholder="Enter...">
-
-                        </div>
-                        <div class="form-group col-4 ">
                            <label for="exampleFormControlSelect1">Field Name *</label>
-                           <input type="text" class="form-control" placeholder="Enter...">
-
+                           <input type="text"  class="form-control" [ngClass]="submitted && f.FieldName.errors?'is-invalid':''"  placeholder="Enter..." formControlName="FieldName">
+                           <div *ngIf="submitted && f.FieldName.errors" class="invalid-feedback" style="display:block !important;background-image: none !important;">
+                              <div *ngIf="f.FieldName.errors.required">FieldName is required</div>
+                          </div>
                         </div>
                         <div class="form-group col-4 ">
                            <label for="exampleFormControlSelect1">Field Type *</label>
-                           <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                           </select>
+                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldType.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldType">
+                           <div *ngIf="submitted && f.FieldType.errors" class="invalid-feedback" style="display:block !important">
+                              <div *ngIf="f.FieldType.errors.required">FieldType is required</div>
+                          </div>
+                        </div>
+                        <div class="form-group col-4 ">
+                           <label for="exampleFormControlSelect1">Field Info *</label>
+                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldInfo.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldInfo">
+                           <div *ngIf="submitted && f.FieldInfo.errors" class="invalid-feedback" style="display:block !important">
+                              <div *ngIf="f.FieldInfo.errors.required"> FieldInfo is required</div>
+                          </div>
                         </div>
                      </div>
                      <div class="col-12 pad0 row">
-                        <div class="form-group col-4 pl-0">
-                           <label for="exampleFormControlSelect1">Field Info *</label>
-                           <input type="text" class="form-control" placeholder="Enter...">
-
-                        </div>
-                        <div class="form-group col-4 ">
+                        <div class="form-group col-4 pl-0 ">
                            <label for="exampleFormControlSelect1">Portal ID *</label>
-                           <input type="text" class="form-control" placeholder="Enter...">
-
+                           <input type="text" class="form-control" [ngClass]="submitted && f.PortalId.errors?'is-invalid':''" placeholder="Enter..." formControlName="PortalId">
+                           <div *ngIf="submitted && f.PortalId.errors" class="invalid-feedback" style="display:block !important">
+                              <div *ngIf="f.PortalId.errors.required">PortalId is required</div>
+                          </div>
                         </div>
                         <div class="form-group col-4 ">
                            <label for="exampleFormControlSelect1">Field Name Patterns *</label>
-                           <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                           </select>
+                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldPatterns.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldPatterns">
+                           <div *ngIf="submitted && f.FieldPatterns.errors" class="invalid-feedback" style="display:block !important">
+                              <div *ngIf="f.FieldPatterns.errors.required">FieldPatterns is required</div>
+                          </div>
                         </div>
-                     </div>
-                     <div class="col-12 pad0 row">
-                        <div class="form-group col-4 pl-0">
+                        <div class="form-group col-4">
                            <label for="exampleFormControlSelect1">Test Data *</label>
-                           <input type="text" class="form-control" placeholder="Enter...">
-
+                           <input type="text" class="form-control" [ngClass]="submitted && f.TestData.errors?'is-invalid':''" placeholder="Enter..." formControlName="TestData">
+                           <div *ngIf="submitted && f.TestData.errors" class="invalid-feedback" style="display:block !important">
+                              <div *ngIf="f.TestData.errors.required">TestData is required</div>
+                          </div>
                         </div>
                      </div>
                   </div>
-                  <div class="col-12 mt-5 text-center">
-                     <button type="submit" class="btn btn-reset mr-2">Reset</button>
-                     <button type="submit" class="btn btn-save mr-2">ADD/SAVE</button>
+                  </form>
+                  <div class="col-12 mt-2 text-center">
+                     <button type="submit" class="btn btn-reset mr-2" (click)="onModalResetClick(inputFile,inputFile1)">Reset</button>
+                     <button type="submit" class="btn btn-save mr-2" (click)="onSaveClick()" > ADD/SAVE</button>
                   </div>
                </div>
 
             </div>
          </div>
       </div>
-      <footer id="footer">
-         ©2020 Cognizant, All Rights Reserved.
-      </footer>
    </div>
-   <script src="./assets/js/jquery-3.5.1.min.js"></script>
-   <script src="./assets/js/bootstrap.min.js"></script>
-   <script src="./assets/js/jquery.dataTables.min.js"></script>
-   <script src="./assets/js/dataTables.bootstrap4.min.js"></script>
-   <script type="text/javascript">
-      $(document).ready(function () {
-
-      });
-   </script>
-</body>
-
-</html>
+  
