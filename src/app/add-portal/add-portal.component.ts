@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
 import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {AddPortalService} from '../service/add-portal.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+
 export class DropData {
   constructor(
     public id: number,
@@ -56,6 +55,7 @@ export class AddPortalComponent implements OnInit {
   arrayBuffer:any;
   public addFieldForm: FormGroup;
   formDialogBoxData:any=[];
+  sampleFormDialogBoxData:any=[];
   isExcelSelected:boolean=false;
   Industry: any = [];
   ClientName: any = []
@@ -71,7 +71,7 @@ export class AddPortalComponent implements OnInit {
   popUpMsg="";
   
   constructor(private httpClientService: HttpClientService,public addPortalService: AddPortalService,
-    private router: Router,private spinner: NgxSpinnerService,private modalService: NgbModal,private formBuilder:FormBuilder) {}
+    private router: Router,private spinner: NgxSpinnerService,private formBuilder:FormBuilder) {}
 
   ngOnInit() {
     let defaultId = "selesaabbb";
@@ -79,8 +79,6 @@ export class AddPortalComponent implements OnInit {
    this.addFieldForm=this.formBuilder.group({
     FieldName: ['',Validators.required], 
     FieldType: ['',Validators.required],
-    FieldInfo: ['',Validators.required],
-    PortalId: ['',Validators.required],
     FieldPatterns: ['',Validators.required],
     TestData: ['',Validators.required],
    })
@@ -305,11 +303,12 @@ export class AddPortalComponent implements OnInit {
     if (this.addFieldForm.invalid) {
         return;
     }
-  let sampleValue={"1":this.addFieldForm.get('FieldName').value,"2":this.addFieldForm.get('FieldType').value,"3":this.addFieldForm.get('FieldInfo').value,"4":this.addFieldForm.get('PortalId').value,"5":this.addFieldForm.get('FieldPatterns').value,"6":this.addFieldForm.get('TestData').value};
-  let fieldValue=[{"1":"fieldName","2":"fieldType","3":"fieldInfo","4":"portalId","5":"fieldPatterns","6":"testData"}]
-  this.formDialogBoxData.push(sampleValue);
+  let fieldValue={"1":this.addFieldForm.get('FieldName').value,"2":this.addFieldForm.get('FieldType').value,"3":this.addFieldForm.get('FieldPatterns').value};
+  let sampleValue=[{"1":this.addFieldForm.get('TestData').value}]
+  this.formDialogBoxData.push(fieldValue);
   this.fields=JSON.stringify(this.formDialogBoxData);
-  this.sampleData=JSON.stringify(fieldValue);
+  this.sampleFormDialogBoxData.push(sampleValue)
+  this.sampleData=JSON.stringify(this.sampleFormDialogBoxData);
   this.addFieldModalEnabled=false;
   this.addFieldsMessage="Customized add field details saved Successfully !!!";
   this.isFieldAdded=true;
@@ -327,15 +326,17 @@ export class AddPortalComponent implements OnInit {
 
  addfile(event,text)     
   { 
+  this.formDialogBoxData=[];
+  this.sampleFormDialogBoxData=[];
   this.popUpMsg="";
   this.addFieldsMessage="Details has been changed in add fields.Please enter the valid details to execute successfully";
   this.addFieldForm.enable();
   this.addFieldDisabled=false;
   this.file= event.target.files[0]; 
   if(this.file){
-    this.addFieldForm.reset();
-    this.addFieldForm.disable();
-    this.addFieldDisabled=true;
+  this.addFieldForm.reset();
+  this.addFieldForm.disable();
+  this.addFieldDisabled=true;
   let fileReader = new FileReader();    
   fileReader.readAsArrayBuffer(this.file);     
   fileReader.onload = (e) => {    
@@ -376,6 +377,7 @@ onModalResetClick(element,element1){
 onModalPopUpOpen(){
 this.addFieldModalEnabled=true;
 this.submitted=false;
+this.popUpMsg="";
 }
 
 onModalCloseClick(){
