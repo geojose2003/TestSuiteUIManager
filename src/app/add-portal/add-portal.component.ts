@@ -8,7 +8,6 @@ import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {AddPortalService} from '../service/add-portal.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { AddDialogBoxComponent } from "../add-dialog-box/add-dialog-box.component";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 export class DropData {
   constructor(
