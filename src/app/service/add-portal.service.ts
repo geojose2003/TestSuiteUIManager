@@ -71,24 +71,10 @@ export class AddPortalService {
         })
       );
     }
-    addPortal(field: FormData){ 
-        let portal = {
-          "portalName" : field.get("portalName").toString(),
-          "moduleName" : field.get("moduleName").toString(),
-          "categoryName" : field.get("categoryName").toString(),
-          "portalUrl" : field.get("portalUrl").toString(),
-          "field" : field.get("field").toString(),
-          "sampleData" : field.get("sampleData").toString(),
-          "clientName" : field.get("clientName").toString(),
-          "industry" : field.get("industry").toString(),
-          "navigate" : field.get("navigate").toString(),
-          "userNameForPortal" : field.get("userNameForPortal").toString(),
-          "password" : field.get("password").toString() 
-         
-        };
+    addPortal(field){ 
         this.spinner.show();
         return this.httpClient
-        .post<any>("http://localhost:8083/testSuiteAPIService/addPortal", portal,this.jwt())
+        .post<any>("http://localhost:8083/testSuiteAPIService/addPortal", field,this.jwt())
         .pipe(
           map(userData => {
             this.spinner.hide(); 
