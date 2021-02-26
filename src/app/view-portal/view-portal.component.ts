@@ -34,7 +34,7 @@ export class ViewPortalComponent implements OnInit {
   hide=true;
   isPopupOpened = true;
   Imagepath: any=[]
-  displayedColumns: string[] = ['PortalID','BusinessUnit','SubBusinessUnit','ClientName','PortalName', 'PortalUrl','ModuleName', 'Fields','Status','Result'];
+  displayedColumns: string[] = ['PortalID','BusinessUnit','SubBusinessUnit','ClientName','PortalName', 'PortalUrl','ModuleName', 'Fields','Status','Result','Action'];
   portalInfo = new MatTableDataSource(this.portal);
 
   constructor(private service: ViewPortalService,private dialog: MatDialog,private router: Router,
@@ -107,7 +107,7 @@ deletPortal(portal): void {
     this.router.navigateByUrl('/addportal');
 };
   navigatePortal(portal): void {
-
+console.log("calling automation bot")
     this.service.navigatePortal(portal,this.browservalue).subscribe((data)=>{
       if(data){
         window.location.reload()
