@@ -95,7 +95,7 @@
       </div>
    
       <!-- savePortal Modal -->
-      <div class="modal fade" id="savePortal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div *ngIf="submitPopUpEnabled" [style.display]="submitPopUpEnabled?'block':'none'" class="modal fade show" id="savePortal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -111,7 +111,7 @@
                   </div>
 
                   <div class="col-12 mt-1 text-center">
-                     <button type="submit" class="btn back-btn mr-2">Ok</button> 
+                     <button type="submit" class="btn back-btn mr-2" (click)="onSaveMsgModalClick()">Ok</button> 
                   </div>
                </div>
             </div>
