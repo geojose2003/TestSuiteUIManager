@@ -92,7 +92,7 @@ export class ViewPortalComponent implements OnInit {
     });
 }
 deletPortal(portal): void {
-  if(confirm("Are you sure to delete ")) {
+  if(confirm("Are you sure to delete?")) {
     this.service.deletePortal(portal).subscribe((data)=>{
       if(data){
         window.location.reload()
