@@ -69,6 +69,8 @@ export class AddPortalComponent implements OnInit {
   addFieldModalEnabled:boolean=false;
   submitted:boolean=false;
   popUpMsg="";
+  submitPopUpEnabled:boolean=false;
+
   
   constructor(private httpClientService: HttpClientService,public addPortalService: AddPortalService,
     private router: Router,private spinner: NgxSpinnerService,private formBuilder:FormBuilder) {}
@@ -260,6 +262,7 @@ export class AddPortalComponent implements OnInit {
  }
 
  submit() {
+   console.log("submit called")
   this.spinner.show();
    var formData={
      portalName:'',
@@ -287,7 +290,7 @@ export class AddPortalComponent implements OnInit {
    formData.sampleData=this.sampleData;
   this.addPortalService.addPortal(formData).subscribe((data)=>{
     if(data){
-      this.router.navigate(["/viewPortal"])
+      this.submitPopUpEnabled=true;
     }
   },(err)=>{
     console.log("failure"+err.log);
@@ -386,4 +389,9 @@ onModalCloseClick(){
 }
 
 get f() { return this.addFieldForm.controls; }
+
+onSaveMsgModalClick(){
+  this.submitPopUpEnabled=false;
+  this.router.navigate(["/viewPortal"]);
+}
 }
