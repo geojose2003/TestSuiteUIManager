@@ -95,8 +95,7 @@ deletPortal(portal): void {
   if(confirm("Are you sure to delete?")) {
     this.service.deletePortal(portal).subscribe((data)=>{
       if(data){
-        window.location.reload()
-        this.router.navigate(["/viewPortal"])
+        this.ngOnInit()
       }
     },(err)=>{
       console.log("failure"+err.log);
