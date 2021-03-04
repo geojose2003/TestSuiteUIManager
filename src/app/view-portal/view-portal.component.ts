@@ -105,6 +105,9 @@ deletPortal(portal): void {
   btnClick= function () {
     this.router.navigateByUrl('/addportal');
 };
+  btnAdminClick= function () {
+  this.router.navigateByUrl('/adminPage');
+};
   navigatePortal(portal): void {
 console.log("calling automation bot")
     this.service.navigatePortal(portal,this.browservalue).subscribe((data)=>{
