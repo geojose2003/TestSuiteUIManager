@@ -37,7 +37,7 @@ export class NewFieldDialogBoxComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    console.log("submit::"+this.form.get('fieldInfo').value);
       //this.dialogService.addContact(this.form.value);
       var formData: any = new FormData();
      
