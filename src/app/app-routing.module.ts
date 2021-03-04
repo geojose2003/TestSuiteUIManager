@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { NewFieldDialogBoxComponent } from './newFieldDialog-box/newFieldDialog-box.component';
 import {SignUpComponent} from './signUp/sign-up.component';
 import {JsonViewComponent} from './json-view/json-view.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService] },
   { path: 'dialogBox', component: DialogBoxComponent,canActivate:[AuthGaurdService] },
+  { path: 'newFieldDialogBox', component: NewFieldDialogBoxComponent,canActivate:[AuthGaurdService] },
   { path: 'signup',component:SignUpComponent},
   { path: 'jsonView',component:JsonViewComponent}
 ];
