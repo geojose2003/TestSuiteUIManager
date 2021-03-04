@@ -23,14 +23,14 @@
        </div>
     </div>
     <ul class="navbar-nav ml-auto navbar-top-links">
-       <li class="nav-item user-text pt-2">
+       <li *ngIf="loginService.isUserLoggedIn()" class="nav-item user-text pt-2">
           <div class="avatar"><img src="./assets/images/userIcon.png"></div>
           <div class="userData">
              <span class="hello">John, Smith</span>
              <span class="name">Sr. Manager</span>
           </div>
        </li>
-       <li class="nav-item">
+       <li *ngIf="loginService.isUserLoggedIn()" class="nav-item">
           <a routerLink="/logout" class="nav-link">
              <div><img src="./assets/images/logout.png"></div>
              <div class="userData">
