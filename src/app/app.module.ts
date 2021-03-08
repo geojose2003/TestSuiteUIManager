@@ -28,7 +28,8 @@ import { DialogBoxService } from './service/dialog-box.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AceEditorModule } from 'ng2-ace-editor';
-;
+import { ViewResultComponent } from './view-result/view-result.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { AceEditorModule } from 'ng2-ace-editor';
     JsonViewComponent,
     LoginComponent,
     SignUpComponent,
-    LogoutComponent  ],
+    LogoutComponent,
+    ViewResultComponent ],
   imports: [
     BrowserModule,
     AngularMaterialModule,
