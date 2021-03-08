@@ -1,0 +1,12 @@
+<div id="page-container" class="main-content" style="background-image: none;background-color: white !important;">
+  <button type="button" style="float:right" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2"><a href="javascript:history.back()" style="color:white !important">Back</a></button>
+  <div class="row" >    
+    <ul>    
+      <li *ngFor="let img of (imgList)">    
+        <a href="{{img.imgName}}" target="_new">    
+          <img src="{{img.imgPath}}" class="img" width="240" height="170">    
+        </a>    
+      </li>    
+    </ul>    
+  </div>
+  </div>
