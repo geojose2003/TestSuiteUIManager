@@ -119,7 +119,18 @@ console.log("calling automation bot")
       console.log("failure"+err.log);
     });
   }
-  
+   editEachPortal(portal): void {
+    console.log("editEachPortal")
+        this.service.editEachPortal(portal,this.browservalue).subscribe((data)=>{
+          if(data){
+            console.log(data);
+            //window.location.reload()
+            //this.router.navigate(["/viewPortal"])
+          }
+        },(err)=>{
+          console.log("failure"+err.log);
+        });
+      }
 }
 export interface PeriodicElement {
   portalId: number;
