@@ -157,7 +157,37 @@ export class ViewPortalService {
         })
       );
   }
+  public editEachPortal(portals,browser) {
+      console.log("browse"+browser)
+      let portal = {
+        "portalID":portals.portalID,
+        "portalName" : portals.portalName,
+        "moduleName" : portals.moduleName,
+        "categoryName":portals.categoryName,
+        "userNameForPortal":portals.userNameForPortal,
+        "password":portals.password,
+        "field" : portals.field,
+        "portalUrl" : portals.portalUrl,
+        "sampleData" : portals.sampleData,
+        "clientName" : portals.clientName,
+        "navigate" : portals.navigate,
+        "industry" : portals.industry,
+        "browser" : browser
 
+
+      };
+      this.spinner.show();
+      return this.httpClient.post<any>(
+        "http://localhost:8083/testSuiteAPIService/editPortalWithFields", portal, this.jwt())
+        .pipe(
+          map(userData => {
+            this.spinner.hide();
+            console.log("portal.moduleName "+portal.moduleName);
+            console.log("userData "+userData);
+            return userData;
+          })
+        );
+    }
   public createPortal(employee) {
     return this.httpClient.post<Portal>(
       "http://localhost:8083/createPortal",
