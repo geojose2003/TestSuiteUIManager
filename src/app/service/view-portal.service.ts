@@ -157,28 +157,12 @@ export class ViewPortalService {
         })
       );
   }
-  public editEachPortal(portals,browser) {
-      console.log("browse"+browser)
-      let portal = {
-        "portalID":portals.portalID,
-        "portalName" : portals.portalName,
-        "moduleName" : portals.moduleName,
-        "categoryName":portals.categoryName,
-        "userNameForPortal":portals.userNameForPortal,
-        "password":portals.password,
-        "field" : portals.field,
-        "portalUrl" : portals.portalUrl,
-        "sampleData" : portals.sampleData,
-        "clientName" : portals.clientName,
-        "navigate" : portals.navigate,
-        "industry" : portals.industry,
-        "browser" : browser
-
-
-      };
-      this.spinner.show();
+ public editEachPortal(pid:number,browser) {
+    console.log("browse"+browser);
+    console.log("pid "+pid);
+     this.spinner.show();
       return this.httpClient.post<any>(
-        "http://localhost:8083/testSuiteAPIService/editPortalWithFields", portal, this.jwt())
+       "http://localhost:8083/testSuiteAPIService/editPortalWithFields", pid, this.jwt())
         .pipe(
           map(userData => {
             this.spinner.hide();
