@@ -121,7 +121,7 @@ console.log("calling automation bot")
   }
    editEachPortal(portal): void {
     console.log("editEachPortal")
-        this.service.editEachPortal(portal,this.browservalue).subscribe((data)=>{
+        this.service.editEachPortal(portal.portalID,this.browservalue).subscribe((data)=>{
           if(data){
             console.log(data);
             //window.location.reload()
