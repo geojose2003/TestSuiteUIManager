@@ -1,203 +1,208 @@
-
-   <div id="page-container" class="main-content" style="background-image: none;background-color: white !important;">
-      <div id="content-wrap">
-         <div class="mainSection">
-            <div class="col-12 row pad0">
-               <div class="col-6 pad0">
-                  <h1 class="headingsty">Add New Portal</h1>
-                  <p class="smltxt">View Portal /</p>
-               </div>
-               <div class="col-6 pad0 text-right">
-                  <button type="button" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2"><a href="javascript:history.back()" style="color:white !important">Back</a></button>
-               </div>
+<div id="page-container" class="main-content" style="background-image: none;background-color: white !important;">
+   <div id="content-wrap">
+      <div class="mainSection">
+         <div class="col-12 row pad0">
+            <div class="col-6 pad0">
+               <h1 class="headingsty" *ngIf="!portalID">Add New Portal</h1>
+               <h1 class="headingsty" *ngIf="portalID">Edit Portal</h1>
+               <p class="smltxt">View Portal /</p>
             </div>
-            <div class="col-12 row pad0"*ngIf="isFieldAdded" style="color:red !important">
-              {{addFieldsMessage}} 
+            <div class="col-6 pad0 text-right">
+               <button type="button" class="btn back-btn"><img src="./assets/images/backicon.png" class="pr-2"><a href="javascript:history.back()" style="color:white !important">Back</a></button>
             </div>
-            <form  [formGroup]="form">
-            <div class="col-12 row pad0">
-               <div class="col-12 row pad0">
-                  <div class="form-group col-4 pl-0">
-                     <label for="exampleFormControlSelect1">Business Unit * </label>
-                     <select class="form-control" (change)="changeDrop($event,'industry')" [(ngModel)]="industry" formControlName="industry" >
-                        <option [selected]="true">Choose your Industry</option>
-                        <option *ngFor="let industry of Industry" [ngValue]="industry">{{industry}}</option>
-                     </select>
-                  </div>
-                  <div class="form-group col-4">
-                     <label for="exampleFormControlSelect1">Sub Business Unit * </label>
-                     <select class="form-control" (change)="changeDrop($event,'category')" [(ngModel)]="categoryName" formControlName="categoryName">
-                        <option [selected]="true">Choose your ClientCategory</option>
-                        <option *ngFor="let categoryName of CategoryName" [ngValue]="categoryName">{{categoryName}}</option>
-                     </select>
-                  </div>
-                  <div class="form-group col-4">
-                     <label for="exampleFormControlSelect1">Client Name *</label>
-                     <select class="form-control" (change)="changeDrop($event,'client')"  [(ngModel)]="clientName" formControlName="clientName">
-                        <option [selected]="true"  >Choose your ClientName</option>
-                        <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
-                     </select>
-                  </div>
-               </div>
-               <div class="col-12 row pad0">
-                  <div class="form-group col-4 pl-0">
-                     <label for="exampleFormControlSelect1">Portal Name * </label>
-                     <select class="form-control" (change)="changeDropPortal($event,'portal')"  [(ngModel)]="portalName" formControlName="portalName">
-                        <option [selected]="true"  >Choose your ClientPortal</option>
-                        <option *ngFor="let portalName of PortalName" [ngValue]="portalName">{{portalName}}</option>
-                     </select>
-                  </div>
-                  <div class="form-group col-4">
-                     <label for="exampleFormControlSelect1">Module Name * </label>
-                     <select class="form-control" (change)="changeDrop($event,'module')"  [(ngModel)]="moduleName" formControlName="moduleName">
-                        <option [selected]="true">Choose your ClientModule</option>
-                        <option *ngFor="let moduleName of ModuleName" [ngValue]="moduleName">{{moduleName}}</option>
-                     </select>
-                  </div>
-                  <div class="form-group col-4">
-                     <label for="exampleFormControlSelect1">User Name for Portal</label>
-                     <input type="text" class="form-control" [(ngModel)]="userNameForPortal" formControlName="userNameForPortal" id="user Name" >
-                  </div>
-               </div>
-               <div class="col-12 row pad0">
-                  <div class="form-group col-4 pl-0">
-                     <label for="exampleFormControlSelect1" style="display:block !important">Password </label>
-                     <input [type]="hide ? 'password': 'text'" class="form-control" [(ngModel)]="password" formControlName="password" id="password" style="display:inline-block !important;width:350px !important" >
-                     <i  class="material-icons" style="padding-left:14px;font-size:20px !important" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
-                  </div>
-                  <div class="form-group col-8">
-                     <label for="exampleFormControlSelect1">Navigation Steps</label>
-                     <input type="text" class="form-control" formControlName="navigate" [(ngModel)]="navigate" id="navigate">
-
-                  </div>
-               </div>
-               <div class="col-12 row pad0">
-                  <div class="form-group col-12 pl-0">
-                     <label for="exampleFormControlSelect1">Portal URL *</label>
-                     <input type="text" class="form-control" [(ngModel)]="portalUrl" formControlName="portalUrl" id="portal Name" >
-                  </div>
-               </div>
-            </div>
-            
-            <div class="col-12 row pad0">
-             <button type="button" class="btn btn-add mr-2" data-toggle="modal" (click)="onModalPopUpOpen()">
-                  <img src="./assets/images/plssml.png" class="pr-2" >Add Fields</button>
-               <!--<button type="submit" class="btn btn-add mr-2"><img src="./assets/images/plssml.png" class="pr-2">Add Sample
-                  Data</button>-->
-            </div>
-            <div class="col-12 mt-5 text-center">
-               <button type="submit" class="btn btn-reset mr-2">Reset</button>
-               <button type="submit" class="btn btn-save mr-2" data-toggle="modal"
-                  (click)="submit()">Save</button>
-            </div>
-            </form>
          </div>
-      </div>
-   
-      <!-- savePortal Modal -->
-      <div *ngIf="submitPopUpEnabled" [style.display]="submitPopUpEnabled?'block':'none'" class="modal fade show" id="savePortal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Message</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
+         <div class="col-12 row pad0"*ngIf="isFieldAdded" style="color:red !important">
+           {{addFieldsMessage}} 
+         </div>
+         <form  [formGroup]="form">
+         <div class="col-12 row pad0">
+            <div class="col-12 row pad0">
+               <div class="form-group col-4 pl-0">
+                  <label for="exampleFormControlSelect1">Business Unit * </label>
+                  <select class="form-control" (change)="changeDrop($event,'industry')"  formControlName="industry" >
+                     <option [selected]="true">Choose your Industry</option>
+                     <option *ngFor="let industry of Industry" [ngValue]="industry">{{industry}}</option>
+                  </select>
                </div>
-               <div class="modal-body">
-                  <div class="col-12  text-center mt-3 mb-3">
-                     <h5><strong>New Portal Added Successfully !</strong></h5>
-                  </div>
+               <div class="form-group col-4">
+                  <label for="exampleFormControlSelect1">Sub Business Unit * </label>
+                  <select class="form-control" (change)="changeDrop($event,'category')"  formControlName="categoryName">
+                     <option [selected]="true">Choose your ClientCategory</option>
+                     <option *ngFor="let categoryName of CategoryName" [ngValue]="categoryName">{{categoryName}}</option>
+                  </select>
+               </div>
+               <div class="form-group col-4">
+                  <label for="exampleFormControlSelect1">Client Name *</label>
+                  <select class="form-control" (change)="changeDrop($event,'client')"  formControlName="clientName">
+                     <option [selected]="true"  >Choose your ClientName</option>
+                     <option *ngFor="let clientName of ClientName" [ngValue]="clientName">{{clientName}}</option>
+                  </select>
+               </div>
+            </div>
+            <div class="col-12 row pad0">
+               <div class="form-group col-4 pl-0">
+                  <label for="exampleFormControlSelect1">Portal Name * </label>
+                  <select class="form-control" (change)="changeDropPortal($event,'portal')"  formControlName="portalName">
+                     <option [selected]="true"  >Choose your ClientPortal</option>
+                     <option *ngFor="let portalName of PortalName" [ngValue]="portalName">{{portalName}}</option>
+                  </select>
+               </div>
+               <div class="form-group col-4">
+                  <label for="exampleFormControlSelect1">Module Name * </label>
+                  <select class="form-control" (change)="changeDrop($event,'module')"  formControlName="moduleName">
+                     <option [selected]="true">Choose your ClientModule</option>
+                     <option *ngFor="let moduleName of ModuleName" [ngValue]="moduleName">{{moduleName}}</option>
+                  </select>
+               </div>
+               <div class="form-group col-4">
+                  <label for="exampleFormControlSelect1">User Name for Portal</label>
+                  <input type="text" class="form-control"  formControlName="userNameForPortal" id="user Name" >
+               </div>
+            </div>
+            <div class="col-12 row pad0">
+               <div class="form-group col-4 pl-0">
+                  <label for="exampleFormControlSelect1" style="display:block !important">Password </label>
+                  <input [type]="hide ? 'password': 'text'" class="form-control"  formControlName="password" id="password" style="display:inline-block !important;width:350px !important" >
+                  <i  class="material-icons" style="padding-left:14px;font-size:20px !important" matSuffix (click)="hide =!hide"> {{hide ? 'visibility' : 'visibility_off'}}</i>
+               </div>
+               <div class="form-group col-8">
+                  <label for="exampleFormControlSelect1">Navigation Steps</label>
+                  <input type="text" class="form-control" formControlName="navigate"  id="navigate">
 
-                  <div class="col-12 mt-1 text-center">
-                     <button type="submit" class="btn back-btn mr-2" (click)="onSaveMsgModalClick()">Ok</button> 
-                  </div>
+               </div>
+            </div>
+            <div class="col-12 row pad0">
+               <div class="form-group col-12 pl-0">
+                  <label for="exampleFormControlSelect1">Portal URL *</label>
+                  <input type="text" class="form-control"  formControlName="portalUrl" id="portal Name" >
                </div>
             </div>
          </div>
+         
+         <div class="col-12 row pad0" *ngIf="!portalID">
+          <button type="button" class="btn btn-add mr-2" data-toggle="modal" (click)="onModalPopUpOpen()">
+               <img src="./assets/images/plssml.png" class="pr-2" >Add Fields</button>
+            <!--<button type="submit" class="btn btn-add mr-2"><img src="./assets/images/plssml.png" class="pr-2">Add Sample
+               Data</button>-->
+         </div>
+         <div class="col-12 row pad0" *ngIf="portalID">
+            <button type="button" class="btn btn-add mr-2" >
+                 Edit/View Fields</button>
+              <!--<button type="submit" class="btn btn-add mr-2"><img src="./assets/images/plssml.png" class="pr-2">Add Sample
+                 Data</button>-->
+           </div>
+         <div class="col-12 mt-5 text-center">
+            <button type="submit" class="btn btn-reset mr-2">Reset</button>
+            <button type="submit" class="btn btn-save mr-2" data-toggle="modal"
+               (click)="submit()">Save</button>
+         </div>
+         </form>
       </div>
-      <!-- addFields Modal -->
-      <div *ngIf="addFieldModalEnabled" [style.display]="addFieldModalEnabled?'block':'none'" class="modal fade show" id="addFields" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         >
-         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Fields</h5>
-                  <button type="button" class="close" (click)="onModalCloseClick()"  aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <h1 class="headingsty">File Upload</h1>
-                  <p style="color:red">{{popUpMsg}}</p>
-                  <div class="col-12 pad0 row">
-                     <div class="form-group  col-12 row pad0">
-                        <label class="col-12 pad0 pb-2" for="exampleFormControlSelect1">Add Fields *</label>
-                        <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
-                           <input  #inputFile class="form-control" id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'fields')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
-                           <label  class="input-group-text" for="inputGroupFile02">Browse</label>
-                        </div>
-                        <div  class="col-3 mt-2" style="margin-top:6px !important">
-                           <button  class="btn btn-ref" type="button">Refer Template</button>
-                        </div>
-                     </div>
-                     <div class="form-group  col-12 row pad0">
-                        <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
-                           <input #inputFile1 class="form-control"  id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'sample')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
-                           <label  class="input-group-text" for="inputGroupFile02">Browse</label>
-                        </div>
-                        <div  class="col-3 mt-2" style="margin-top:6px !important">
-                           <button  class="btn btn-ref" type="button">Refer Template</button>
-                        </div>
-                     </div>
-                  </div>
-                  <hr>
-                  <h1 class="headingsty"> Or Add Fields</h1>
-                  <form [formGroup]="addFieldForm">
-                  <div class="col-12 pad0 row">
-                     <div class="col-12 pad0 row">
-                        <div class="form-group col-4 pl-0">
-                           <label for="exampleFormControlSelect1">Field Name *</label>
-                           <input type="text"  class="form-control" [ngClass]="submitted && f.FieldName.errors?'is-invalid':''"  placeholder="Enter..." formControlName="FieldName">
-                           <div *ngIf="submitted && f.FieldName.errors" class="invalid-feedback" style="display:block !important;background-image: none !important;">
-                              <div *ngIf="f.FieldName.errors.required">FieldName is required</div>
-                          </div>
-                        </div>
-                        <div class="form-group col-4 ">
-                           <label for="exampleFormControlSelect1">Field Type *</label>
-                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldType.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldType">
-                           <div *ngIf="submitted && f.FieldType.errors" class="invalid-feedback" style="display:block !important">
-                              <div *ngIf="f.FieldType.errors.required">FieldType is required</div>
-                          </div>
-                        </div>
-                        <div class="form-group col-4 ">
-                           <label for="exampleFormControlSelect1">Field Name Patterns *</label>
-                           <input type="text" class="form-control" [ngClass]="submitted && f.FieldPatterns.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldPatterns">
-                           <div *ngIf="submitted && f.FieldPatterns.errors" class="invalid-feedback" style="display:block !important">
-                              <div *ngIf="f.FieldPatterns.errors.required">FieldPatterns is required</div>
-                          </div>
-                        </div>
-                     </div>
-                     <div class="col-12 pad0 row">
-                        <div class="form-group col-4 pl-0">
-                           <label for="exampleFormControlSelect1">Test Data *</label>
-                           <input type="text" class="form-control" [ngClass]="submitted && f.TestData.errors?'is-invalid':''" placeholder="Enter..." formControlName="TestData">
-                           <div *ngIf="submitted && f.TestData.errors" class="invalid-feedback" style="display:block !important">
-                              <div *ngIf="f.TestData.errors.required">TestData is required</div>
-                          </div>
-                        </div>
-                     </div>
-                  </div>
-                  </form>
-                  <div class="col-12 mt-2 text-center">
-                     <button type="submit" class="btn btn-reset mr-2" (click)="onModalResetClick(inputFile,inputFile1)">Reset</button>
-                     <button type="submit" class="btn btn-save mr-2" (click)="onSaveClick()" > ADD/SAVE</button>
-                  </div>
+   </div>
+
+   <!-- savePortal Modal -->
+   <div *ngIf="submitPopUpEnabled" [style.display]="submitPopUpEnabled?'block':'none'" class="modal fade show" id="savePortal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div class="col-12  text-center mt-3 mb-3">
+                  <h5><strong>New Portal Added Successfully !</strong></h5>
                </div>
 
+               <div class="col-12 mt-1 text-center">
+                  <button type="submit" class="btn back-btn mr-2" (click)="onSaveMsgModalClick()">Ok</button> 
+               </div>
             </div>
          </div>
       </div>
    </div>
-  
+   <!-- addFields Modal -->
+   <div *ngIf="addFieldModalEnabled" [style.display]="addFieldModalEnabled?'block':'none'" class="modal fade show" id="addFields" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      >
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Add Fields</h5>
+               <button type="button" class="close" (click)="onModalCloseClick()"  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <h1 class="headingsty">File Upload</h1>
+               <p style="color:red">{{popUpMsg}}</p>
+               <div class="col-12 pad0 row">
+                  <div class="form-group  col-12 row pad0">
+                     <label class="col-12 pad0 pb-2" for="exampleFormControlSelect1">Add Fields *</label>
+                     <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
+                        <input  #inputFile class="form-control" id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'fields')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                        <label  class="input-group-text" for="inputGroupFile02">Browse</label>
+                     </div>
+                     <div  class="col-3 mt-2" style="margin-top:6px !important">
+                        <button  class="btn btn-ref" type="button">Refer Template</button>
+                     </div>
+                  </div>
+                  <div class="form-group  col-12 row pad0">
+                     <div  class=" input-group mb-3 col-9" style="margin-top:6px !important">
+                        <input #inputFile1 class="form-control"  id="inputGroupFile02" type="file" style="width:10px !important" (change)="addfile($event,'sample')" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+                        <label  class="input-group-text" for="inputGroupFile02">Browse</label>
+                     </div>
+                     <div  class="col-3 mt-2" style="margin-top:6px !important">
+                        <button  class="btn btn-ref" type="button">Refer Template</button>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+               <h1 class="headingsty"> Or Add Fields</h1>
+               <form [formGroup]="addFieldForm">
+               <div class="col-12 pad0 row">
+                  <div class="col-12 pad0 row">
+                     <div class="form-group col-4 pl-0">
+                        <label for="exampleFormControlSelect1">Field Name *</label>
+                        <input type="text"  class="form-control" [ngClass]="submitted && f.FieldName.errors?'is-invalid':''"  placeholder="Enter..." formControlName="FieldName">
+                        <div *ngIf="submitted && f.FieldName.errors" class="invalid-feedback" style="display:block !important;background-image: none !important;">
+                           <div *ngIf="f.FieldName.errors.required">FieldName is required</div>
+                       </div>
+                     </div>
+                     <div class="form-group col-4 ">
+                        <label for="exampleFormControlSelect1">Field Type *</label>
+                        <input type="text" class="form-control" [ngClass]="submitted && f.FieldType.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldType">
+                        <div *ngIf="submitted && f.FieldType.errors" class="invalid-feedback" style="display:block !important">
+                           <div *ngIf="f.FieldType.errors.required">FieldType is required</div>
+                       </div>
+                     </div>
+                     <div class="form-group col-4 ">
+                        <label for="exampleFormControlSelect1">Field Name Patterns *</label>
+                        <input type="text" class="form-control" [ngClass]="submitted && f.FieldPatterns.errors?'is-invalid':''" placeholder="Enter..." formControlName="FieldPatterns">
+                        <div *ngIf="submitted && f.FieldPatterns.errors" class="invalid-feedback" style="display:block !important">
+                           <div *ngIf="f.FieldPatterns.errors.required">FieldPatterns is required</div>
+                       </div>
+                     </div>
+                  </div>
+                  <div class="col-12 pad0 row">
+                     <div class="form-group col-4 pl-0">
+                        <label for="exampleFormControlSelect1">Test Data *</label>
+                        <input type="text" class="form-control" [ngClass]="submitted && f.TestData.errors?'is-invalid':''" placeholder="Enter..." formControlName="TestData">
+                        <div *ngIf="submitted && f.TestData.errors" class="invalid-feedback" style="display:block !important">
+                           <div *ngIf="f.TestData.errors.required">TestData is required</div>
+                       </div>
+                     </div>
+                  </div>
+               </div>
+               </form>
+               <div class="col-12 mt-2 text-center">
+                  <button type="submit" class="btn btn-reset mr-2" (click)="onModalResetClick(inputFile,inputFile1)">Reset</button>
+                  <button type="submit" class="btn btn-save mr-2" (click)="onSaveClick()" > ADD/SAVE</button>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
