@@ -157,7 +157,7 @@ export class ViewPortalService {
         })
       );
   }
- public editEachPortal(pid:number,browser) {
+ /*public editEachPortal(pid:number,browser) {
     console.log("browse"+browser);
     console.log("pid "+pid);
      this.spinner.show();
@@ -171,7 +171,7 @@ export class ViewPortalService {
             return userData;
           })
         );
-    }
+    }*/
   public createPortal(employee) {
     return this.httpClient.post<Portal>(
       "http://localhost:8083/createPortal",
