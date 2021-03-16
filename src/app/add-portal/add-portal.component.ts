@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { HttpClientService, Portal } from "../service/httpclient.service";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
 import { FormGroup } from '@angular/forms';
 import {  FormControl, FormBuilder, Validators } from '@angular/forms';
 import {AddPortalService} from '../service/add-portal.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ViewPortalService } from "../service/view-portal.service";
 
 export class DropData {
   constructor(
@@ -70,10 +71,13 @@ export class AddPortalComponent implements OnInit {
   submitted:boolean=false;
   popUpMsg="";
   submitPopUpEnabled:boolean=false;
+  portalID:number;
+  editData: any;
 
   
   constructor(private httpClientService: HttpClientService,public addPortalService: AddPortalService,
-    private router: Router,private spinner: NgxSpinnerService,private formBuilder:FormBuilder) {}
+    private router: Router,private spinner: NgxSpinnerService,private formBuilder:FormBuilder,
+    private activateRoute : ActivatedRoute,private viewPortalService:ViewPortalService) {}
 
   ngOnInit() {
     let defaultId = "selesaabbb";
@@ -83,6 +87,9 @@ export class AddPortalComponent implements OnInit {
     FieldType: ['',Validators.required],
     FieldPatterns: ['',Validators.required],
     TestData: ['',Validators.required],
+   })
+   this.activateRoute.paramMap.subscribe(route=>{
+   this.portalID= +route.get('portalID');
    })
     this.form.controls['portalName'].setValue(defaultId);
       this.addPortalService.getvalueForDropdown('','industryLoadAll').subscribe((data)=>{
@@ -98,6 +105,42 @@ export class AddPortalComponent implements OnInit {
     },(err)=>{
       console.log("failure"+err.log);
     })
+    this.editPortal()
+  }
+
+  editPortal(){
+    if(this.portalID){
+      this.CategoryName=[];
+      this.ClientName=[];
+      this.PortalName=[];
+      this.ModuleName=[];
+      this.addPortalService.editEachPortal(this.portalID,"chrome").subscribe((data)=>{
+        if(data){
+          console.log("data:: "+data);
+          this.editData=data;
+          this.CategoryName=this.editData.listCategory.map(x=>x.dropValue);
+          this.ClientName=this.editData.listClient.map(x=>x.dropValue);
+          this.ModuleName=this.editData.listModuleJson.map(x=>x.dropValue);
+          this.PortalName=this.editData.listPortalJson.map(x=>x.dropValue);
+          this.form.patchValue({
+            industry: this.editData.industry, 
+            categoryName:this.editData.categoryName,
+            clientName: this.editData.clientName,
+            portalName: this.editData.portalName,
+            moduleName: this.editData.moduleName,
+            userNameForPortal: this.editData.userNameForPortal,
+            password: this.editData.password,
+            portalUrl:this.editData.portalUrl,
+            navigate: this.editData.navigate
+           })
+        }
+      },(err)=>{
+        console.log("failure"+err.log);
+      });
+    
+     
+     console.log(this.editData);
+    }
   }
 
   uploadedFile(event,option) { 
@@ -113,7 +156,8 @@ export class AddPortalComponent implements OnInit {
 
   changeDrop(e,drop){
     this.spinner.show();
-    var dropvalue=e.target.value;
+    let dropvalue;
+    dropvalue=e.target.value;
     if(drop=='industry'){
     this.CategoryName=[];
     }else if(drop=='category'){
@@ -124,7 +168,7 @@ export class AddPortalComponent implements OnInit {
     else if(drop=='portal'){
       this.ModuleName=[];
     }
-    
+    console.log(dropvalue,drop);
     this.addPortalService.getvalueForDropdown(dropvalue,drop).subscribe((data)=>{
       if(data){
       this.userlist=data;
@@ -132,6 +176,11 @@ export class AddPortalComponent implements OnInit {
         let dropValue=this.userlist[i].dropValue;
        if(drop=='industry'){
         this.CategoryName.push(dropValue);
+        if(this.portalID){
+          this.form.patchValue({
+            categoryName: this.editData.categoryName,
+          })
+        }
        }else if(drop=='category'){
         this.ClientName.push(dropValue);
        }
@@ -395,3 +444,5 @@ onSaveMsgModalClick(){
   this.router.navigate(["/viewPortal"]);
 }
 }
+
+
