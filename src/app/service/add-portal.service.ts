@@ -82,6 +82,22 @@ export class AddPortalService {
           })
         );
 
+   }
+   public editEachPortal(pid:number,browser) {
+            console.log("browse"+browser);
+            console.log("pid "+pid);
+            
+            this.spinner.show();
+            return this.httpClient.post<any>(
+              "http://localhost:8083/testSuiteAPIService/editPortalWithFields", pid, this.jwt())
+              .pipe(
+                map(userData => {
+                  this.spinner.hide();
+                 
+                  console.log("userData "+userData);
+                  return userData;
+                })
+              );
           }
 
 } 
