@@ -119,8 +119,8 @@ console.log("calling automation bot")
       console.log("failure"+err.log);
     });
   }
-   editEachPortal(portal): void {
-    console.log("editEachPortal")
+   editEachPortal(portalID): void {
+   /* console.log("editEachPortal")
         this.service.editEachPortal(portal.portalID,this.browservalue).subscribe((data)=>{
           if(data){
             console.log(data);
@@ -129,7 +129,8 @@ console.log("calling automation bot")
           }
         },(err)=>{
           console.log("failure"+err.log);
-        });
+        });*/
+     this.router.navigate(['/editPortal',portalID])
       }
 }
 export interface PeriodicElement {
