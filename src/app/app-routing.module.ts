@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'newFieldDialogBox', component: NewFieldDialogBoxComponent,canActivate:[AuthGaurdService] },
   { path: 'signup',component:SignUpComponent},
   { path: 'jsonView',component:JsonViewComponent},
-  { path: 'viewResult',component:ViewResultComponent}
+  { path: 'viewResult',component:ViewResultComponent},
+  { path: 'editPortal/:portalID', component: AddPortalComponent,canActivate:[AuthGaurdService]}
 ];
 
 @NgModule({
